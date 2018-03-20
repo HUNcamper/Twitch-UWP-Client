@@ -42,13 +42,7 @@ namespace TwitchClient
             // channel, client_id
             string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
 
-            HttpClientHandler hch = new HttpClientHandler();
-            hch.Proxy = null;
-            hch.UseProxy = false;
-
-            HttpClient HTTPClient = new HttpClient(hch);
-
-            HTTP http = new HTTP(HTTPClient);
+            HTTP http = new HTTP();
 
             string json = await http.Get(String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
 
@@ -63,13 +57,16 @@ namespace TwitchClient
 
             string m3u = await http.Get(String.Format(USHER_API, "arteezy", obj.token, obj.sig, 9999));
 
-
             Debug.WriteLine("M3U8:");
             Debug.WriteLine(m3u);
 
             List<M3U> m3uParsed = M3UParser.Parse(m3u);
 
             Debug.WriteLine("Done");
+
+            Uri streamUri = new Uri(m3uParsed[0].url);
+
+            //mediaPlayer.Source = MediaSource.CreateFromUri(streamUri);
 
             #region File Media Player
 

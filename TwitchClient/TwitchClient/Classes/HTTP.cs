@@ -24,18 +24,14 @@ namespace TwitchClient
         /// Constructor.
         /// </summary>
         /// <param name="httpclient">Http Client</param>
-        public HTTP(HttpClient httpclient)
+        public HTTP()
         {
-            client = httpclient;
-        }
+            // Don't use proxy, it just slows requests
+            HttpClientHandler hch = new HttpClientHandler();
+            hch.Proxy = null;
+            hch.UseProxy = false;
 
-        /// <summary>
-        /// Set the Http Client
-        /// </summary>
-        /// <param name="cclient">Http Client</param>
-        public void SetClient(HttpClient httpclient)
-        {
-            client = httpclient;
+            client = new HttpClient(hch);
         }
 
         /// <summary>

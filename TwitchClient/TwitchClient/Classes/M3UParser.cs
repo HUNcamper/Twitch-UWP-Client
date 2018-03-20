@@ -7,7 +7,7 @@ namespace TwitchClient
     /// <summary>
     /// Struct for storing parsed M3U stream data.
     /// </summary>
-    struct M3U
+    public struct M3U
     {
         public string name;
         public int bandwidth;
