@@ -7,8 +7,6 @@ using FFmpegInterop;
 using Windows.UI.Popups;
 using Windows.Media.Core;
 using Windows.Storage.Streams;
-using PlaylistsNET.Content;
-using PlaylistsNET.Model;
 using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -49,7 +47,9 @@ namespace TwitchClient
 
             HttpClient HTTPClient = new HttpClient(hch);
 
-            string json = await HTTPGet(HTTPClient, String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
+            HTTP http = new HTTP(HTTPClient);
+
+            string json = await http.Get(String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
 
             JSONTokenApiResponse obj = JsonConvert.DeserializeObject<JSONTokenApiResponse>(json);
             Debug.WriteLine("JSON:");
@@ -60,13 +60,17 @@ namespace TwitchClient
             Debug.WriteLine("token: " + obj.token);
             Debug.WriteLine("sig: " + obj.sig);
 
-            string m3u8 = await HTTPGet(HTTPClient, String.Format(USHER_API, "arteezy", obj.token, obj.sig, 9999));
+            string m3u = await http.Get(String.Format(USHER_API, "arteezy", obj.token, obj.sig, 9999));
+            string[] m3uLines = m3u.Split( new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None );
 
             Debug.WriteLine("M3U8:");
-            Debug.WriteLine(m3u8);
-            //WplContent content = new WplContent();
-            //WplPlaylist playlist = content.GetFromStream(StringToStream(m3u8));
+            Debug.WriteLine(m3u);
+
+            //var m3uParsed = 
+            //Debug.WriteLine(m3uParsed);
+
             Debug.WriteLine("Done");
+
             #region File Media Player
 
             /*
@@ -199,29 +203,6 @@ namespace TwitchClient
             {
                 CMDBar.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-        }
-
-        // TEMPORARY STUFF!!!
-
-        private async Task<string> HTTPGet(HttpClient client, string url)
-        {
-            Debug.WriteLine("GETTING {0}", url);
-            using (var r = await client.GetAsync(new Uri(url)))
-            {
-                string result = await r.Content.ReadAsStringAsync();
-                Debug.WriteLine("COMPLETED");
-                return result;
-            }
-        }
-
-        private Stream StringToStream(string s)
-        {
-            var stream = new MemoryStream();
-            var writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
         }
     }
 }

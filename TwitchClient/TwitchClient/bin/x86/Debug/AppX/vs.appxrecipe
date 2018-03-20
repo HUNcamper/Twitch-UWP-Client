@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-20T19:59:02.521</Modified>
+      <Modified>2018-03-20T20:21:24.255</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.exe">
       <PackagePath>entrypoint\TwitchClient.exe</PackagePath>
-      <Modified>2018-03-20T19:59:01.211</Modified>
+      <Modified>2018-03-20T20:21:23.927</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\FFmpegInterop.dll">
       <PackagePath>FFmpegInterop.dll</PackagePath>
@@ -70,6 +70,10 @@
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\swscale-4.dll">
       <PackagePath>swscale-4.dll</PackagePath>
       <Modified>2017-03-11T09:45:14.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\m3uparser\1.0.0.1\lib\portable-net45+wp8+win8\M3UParser.dll">
+      <PackagePath>M3UParser.dll</PackagePath>
+      <Modified>2014-05-18T13:46:24.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\microsoft.csharp\4.3.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -130,10 +134,6 @@
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\newtonsoft.json\11.0.1\lib\netstandard1.3\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
       <Modified>2018-02-18T08:44:54.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\playlists.net\1.2.0\lib\netstandard1.3\Playlists.NET.dll">
-      <PackagePath>Playlists.NET.dll</PackagePath>
-      <Modified>2017-05-04T09:36:26.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\runtime.any.system.collections\4.3.0\lib\netcore50\System.Collections.dll">
       <PackagePath>System.Collections.dll</PackagePath>
@@ -608,11 +608,11 @@
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-20T19:00:08.180</Modified>
+      <Modified>2018-03-20T20:20:44.507</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\TwitchClient.exe">
       <PackagePath>TwitchClient.exe</PackagePath>
-      <Modified>2018-03-20T19:59:02.514</Modified>
+      <Modified>2018-03-20T20:21:24.253</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

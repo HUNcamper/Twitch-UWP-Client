@@ -498,15 +498,6 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        }
-      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -2926,15 +2917,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
-        }
-      },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -5445,15 +5427,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
-        }
-      },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -8003,15 +7976,6 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        }
-      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -10529,15 +10493,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
-        }
-      },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -13093,15 +13048,6 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        }
-      },
       "runtime.any.System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -15619,15 +15565,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
-        }
-      },
-      "Playlists.NET/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Playlists.NET.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -20669,16 +20606,6 @@
         "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
         "newtonsoft.json.11.0.1.nupkg.sha512",
         "newtonsoft.json.nuspec"
-      ]
-    },
-    "Playlists.NET/1.2.0": {
-      "sha512": "RsUhjNjkk/VVucy7g2xpwVfbH0bh4oizEW+4OiqtgRwz3ZyxCto8iKaTM4C7v6OX7aOE3h8QwkCA5mG0iKU+Jg==",
-      "type": "package",
-      "path": "playlists.net/1.2.0",
-      "files": [
-        "lib/netstandard1.3/Playlists.NET.dll",
-        "playlists.net.1.2.0.nupkg.sha512",
-        "playlists.net.nuspec"
       ]
     },
     "runtime.any.System.Collections/4.3.0": {
@@ -27868,8 +27795,7 @@
     "UAP,Version=v10.0.10240": [
       "FFmpegInterop.UWP >= 1.0.4",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.0.6",
-      "Newtonsoft.Json >= 11.0.1",
-      "Playlists.NET >= 1.2.0"
+      "Newtonsoft.Json >= 11.0.1"
     ]
   },
   "packageFolders": {
@@ -27921,10 +27847,6 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[11.0.1, )"
-          },
-          "Playlists.NET": {
-            "target": "Package",
-            "version": "[1.2.0, )"
           }
         }
       }
