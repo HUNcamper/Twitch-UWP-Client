@@ -2,6 +2,113 @@
   "version": 3,
   "targets": {
     "UAP,Version=v10.0.10240": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win10-arm/native/FFmpegInterop.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/avcodec-57.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/avdevice-57.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/avfilter-6.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/avformat-57.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/avutil-55.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/swresample-2.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm/native/swscale-4.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-x64/native/FFmpegInterop.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/avcodec-57.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/avdevice-57.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/avfilter-6.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/avformat-57.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/avutil-55.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/swresample-2.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x64/native/swscale-4.dll": {
+            "assetType": "native",
+            "rid": "win10-x64"
+          },
+          "runtimes/win10-x86/native/FFmpegInterop.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/avcodec-57.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/avdevice-57.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/avfilter-6.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/avformat-57.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/avutil-55.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/swresample-2.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          },
+          "runtimes/win10-x86/native/swscale-4.dll": {
+            "assetType": "native",
+            "rid": "win10-x86"
+          }
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -2208,6 +2315,25 @@
       }
     },
     "UAP,Version=v10.0.10240/win10-arm": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/FFmpegInterop.dll": {},
+          "runtimes/win10-arm/native/avcodec-57.dll": {},
+          "runtimes/win10-arm/native/avdevice-57.dll": {},
+          "runtimes/win10-arm/native/avfilter-6.dll": {},
+          "runtimes/win10-arm/native/avformat-57.dll": {},
+          "runtimes/win10-arm/native/avutil-55.dll": {},
+          "runtimes/win10-arm/native/swresample-2.dll": {},
+          "runtimes/win10-arm/native/swscale-4.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4504,6 +4630,25 @@
       }
     },
     "UAP,Version=v10.0.10240/win10-arm-aot": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-arm/native/FFmpegInterop.dll": {},
+          "runtimes/win10-arm/native/avcodec-57.dll": {},
+          "runtimes/win10-arm/native/avdevice-57.dll": {},
+          "runtimes/win10-arm/native/avfilter-6.dll": {},
+          "runtimes/win10-arm/native/avformat-57.dll": {},
+          "runtimes/win10-arm/native/avutil-55.dll": {},
+          "runtimes/win10-arm/native/swresample-2.dll": {},
+          "runtimes/win10-arm/native/swscale-4.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -6836,6 +6981,25 @@
       }
     },
     "UAP,Version=v10.0.10240/win10-x64": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/FFmpegInterop.dll": {},
+          "runtimes/win10-x64/native/avcodec-57.dll": {},
+          "runtimes/win10-x64/native/avdevice-57.dll": {},
+          "runtimes/win10-x64/native/avfilter-6.dll": {},
+          "runtimes/win10-x64/native/avformat-57.dll": {},
+          "runtimes/win10-x64/native/avutil-55.dll": {},
+          "runtimes/win10-x64/native/swresample-2.dll": {},
+          "runtimes/win10-x64/native/swscale-4.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -9141,6 +9305,25 @@
       }
     },
     "UAP,Version=v10.0.10240/win10-x64-aot": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x64/native/FFmpegInterop.dll": {},
+          "runtimes/win10-x64/native/avcodec-57.dll": {},
+          "runtimes/win10-x64/native/avdevice-57.dll": {},
+          "runtimes/win10-x64/native/avfilter-6.dll": {},
+          "runtimes/win10-x64/native/avformat-57.dll": {},
+          "runtimes/win10-x64/native/avutil-55.dll": {},
+          "runtimes/win10-x64/native/swresample-2.dll": {},
+          "runtimes/win10-x64/native/swscale-4.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -11482,6 +11665,25 @@
       }
     },
     "UAP,Version=v10.0.10240/win10-x86": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/FFmpegInterop.dll": {},
+          "runtimes/win10-x86/native/avcodec-57.dll": {},
+          "runtimes/win10-x86/native/avdevice-57.dll": {},
+          "runtimes/win10-x86/native/avfilter-6.dll": {},
+          "runtimes/win10-x86/native/avformat-57.dll": {},
+          "runtimes/win10-x86/native/avutil-55.dll": {},
+          "runtimes/win10-x86/native/swresample-2.dll": {},
+          "runtimes/win10-x86/native/swscale-4.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -13787,6 +13989,25 @@
       }
     },
     "UAP,Version=v10.0.10240/win10-x86-aot": {
+      "FFmpegInterop.UWP/1.0.4": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/FFmpegInterop.winmd": {}
+        },
+        "native": {
+          "runtimes/win10-x86/native/FFmpegInterop.dll": {},
+          "runtimes/win10-x86/native/avcodec-57.dll": {},
+          "runtimes/win10-x86/native/avdevice-57.dll": {},
+          "runtimes/win10-x86/native/avfilter-6.dll": {},
+          "runtimes/win10-x86/native/avformat-57.dll": {},
+          "runtimes/win10-x86/native/avutil-55.dll": {},
+          "runtimes/win10-x86/native/swresample-2.dll": {},
+          "runtimes/win10-x86/native/swscale-4.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -16129,6 +16350,144 @@
     }
   },
   "libraries": {
+    "FFmpegInterop.UWP/1.0.4": {
+      "sha512": "am15KrybcfhQndN5AYXqCFA1nJR0zR1gAOcUq8CFT5Rh+IWQwUBnTFD03qw648yakhpRwgup83nOottLfUL4bQ==",
+      "type": "package",
+      "path": "ffmpeginterop.uwp/1.0.4",
+      "files": [
+        "README.md",
+        "ffmpeginterop.uwp.1.0.4.nupkg.sha512",
+        "ffmpeginterop.uwp.nuspec",
+        "include/libavcodec/avcodec.h",
+        "include/libavcodec/avdct.h",
+        "include/libavcodec/avfft.h",
+        "include/libavcodec/d3d11va.h",
+        "include/libavcodec/dirac.h",
+        "include/libavcodec/dv_profile.h",
+        "include/libavcodec/dxva2.h",
+        "include/libavcodec/jni.h",
+        "include/libavcodec/qsv.h",
+        "include/libavcodec/vaapi.h",
+        "include/libavcodec/vda.h",
+        "include/libavcodec/vdpau.h",
+        "include/libavcodec/version.h",
+        "include/libavcodec/videotoolbox.h",
+        "include/libavcodec/vorbis_parser.h",
+        "include/libavcodec/xvmc.h",
+        "include/libavdevice/avdevice.h",
+        "include/libavdevice/version.h",
+        "include/libavfilter/avfilter.h",
+        "include/libavfilter/avfiltergraph.h",
+        "include/libavfilter/buffersink.h",
+        "include/libavfilter/buffersrc.h",
+        "include/libavfilter/version.h",
+        "include/libavformat/avformat.h",
+        "include/libavformat/avio.h",
+        "include/libavformat/version.h",
+        "include/libavutil/adler32.h",
+        "include/libavutil/aes.h",
+        "include/libavutil/aes_ctr.h",
+        "include/libavutil/attributes.h",
+        "include/libavutil/audio_fifo.h",
+        "include/libavutil/avassert.h",
+        "include/libavutil/avconfig.h",
+        "include/libavutil/avstring.h",
+        "include/libavutil/avutil.h",
+        "include/libavutil/base64.h",
+        "include/libavutil/blowfish.h",
+        "include/libavutil/bprint.h",
+        "include/libavutil/bswap.h",
+        "include/libavutil/buffer.h",
+        "include/libavutil/camellia.h",
+        "include/libavutil/cast5.h",
+        "include/libavutil/channel_layout.h",
+        "include/libavutil/common.h",
+        "include/libavutil/cpu.h",
+        "include/libavutil/crc.h",
+        "include/libavutil/des.h",
+        "include/libavutil/dict.h",
+        "include/libavutil/display.h",
+        "include/libavutil/downmix_info.h",
+        "include/libavutil/error.h",
+        "include/libavutil/eval.h",
+        "include/libavutil/ffversion.h",
+        "include/libavutil/fifo.h",
+        "include/libavutil/file.h",
+        "include/libavutil/frame.h",
+        "include/libavutil/hash.h",
+        "include/libavutil/hmac.h",
+        "include/libavutil/hwcontext.h",
+        "include/libavutil/hwcontext_cuda.h",
+        "include/libavutil/hwcontext_dxva2.h",
+        "include/libavutil/hwcontext_vaapi.h",
+        "include/libavutil/hwcontext_vdpau.h",
+        "include/libavutil/imgutils.h",
+        "include/libavutil/intfloat.h",
+        "include/libavutil/intreadwrite.h",
+        "include/libavutil/lfg.h",
+        "include/libavutil/log.h",
+        "include/libavutil/lzo.h",
+        "include/libavutil/macros.h",
+        "include/libavutil/mastering_display_metadata.h",
+        "include/libavutil/mathematics.h",
+        "include/libavutil/md5.h",
+        "include/libavutil/mem.h",
+        "include/libavutil/motion_vector.h",
+        "include/libavutil/murmur3.h",
+        "include/libavutil/opt.h",
+        "include/libavutil/parseutils.h",
+        "include/libavutil/pixdesc.h",
+        "include/libavutil/pixelutils.h",
+        "include/libavutil/pixfmt.h",
+        "include/libavutil/random_seed.h",
+        "include/libavutil/rational.h",
+        "include/libavutil/rc4.h",
+        "include/libavutil/replaygain.h",
+        "include/libavutil/ripemd.h",
+        "include/libavutil/samplefmt.h",
+        "include/libavutil/sha.h",
+        "include/libavutil/sha512.h",
+        "include/libavutil/stereo3d.h",
+        "include/libavutil/tea.h",
+        "include/libavutil/threadmessage.h",
+        "include/libavutil/time.h",
+        "include/libavutil/timecode.h",
+        "include/libavutil/timestamp.h",
+        "include/libavutil/tree.h",
+        "include/libavutil/twofish.h",
+        "include/libavutil/version.h",
+        "include/libavutil/xtea.h",
+        "include/libswresample/swresample.h",
+        "include/libswresample/version.h",
+        "include/libswscale/swscale.h",
+        "include/libswscale/version.h",
+        "lib/uap10.0/FFmpegInterop.winmd",
+        "runtimes/win10-arm/native/FFmpegInterop.dll",
+        "runtimes/win10-arm/native/avcodec-57.dll",
+        "runtimes/win10-arm/native/avdevice-57.dll",
+        "runtimes/win10-arm/native/avfilter-6.dll",
+        "runtimes/win10-arm/native/avformat-57.dll",
+        "runtimes/win10-arm/native/avutil-55.dll",
+        "runtimes/win10-arm/native/swresample-2.dll",
+        "runtimes/win10-arm/native/swscale-4.dll",
+        "runtimes/win10-x64/native/FFmpegInterop.dll",
+        "runtimes/win10-x64/native/avcodec-57.dll",
+        "runtimes/win10-x64/native/avdevice-57.dll",
+        "runtimes/win10-x64/native/avfilter-6.dll",
+        "runtimes/win10-x64/native/avformat-57.dll",
+        "runtimes/win10-x64/native/avutil-55.dll",
+        "runtimes/win10-x64/native/swresample-2.dll",
+        "runtimes/win10-x64/native/swscale-4.dll",
+        "runtimes/win10-x86/native/FFmpegInterop.dll",
+        "runtimes/win10-x86/native/avcodec-57.dll",
+        "runtimes/win10-x86/native/avdevice-57.dll",
+        "runtimes/win10-x86/native/avfilter-6.dll",
+        "runtimes/win10-x86/native/avformat-57.dll",
+        "runtimes/win10-x86/native/avutil-55.dll",
+        "runtimes/win10-x86/native/swresample-2.dll",
+        "runtimes/win10-x86/native/swscale-4.dll"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -25565,6 +25924,7 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.10240": [
+      "FFmpegInterop.UWP >= 1.0.4",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.0.6"
     ]
   },
@@ -25606,6 +25966,10 @@
     "frameworks": {
       "uap10.0.10240": {
         "dependencies": {
+          "FFmpegInterop.UWP": {
+            "target": "Package",
+            "version": "[1.0.4, )"
+          },
           "Microsoft.NETCore.UniversalWindowsPlatform": {
             "target": "Package",
             "version": "[6.0.6, )"
