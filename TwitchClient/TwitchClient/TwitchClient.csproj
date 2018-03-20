@@ -95,6 +95,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\HTTP.cs" />
+    <Compile Include="Classes\M3UParser.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -129,9 +131,6 @@
   <ItemGroup>
     <PackageReference Include="FFmpegInterop.UWP">
       <Version>1.0.4</Version>
-    </PackageReference>
-    <PackageReference Include="M3UParser">
-      <Version>1.0.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.0.6</Version>

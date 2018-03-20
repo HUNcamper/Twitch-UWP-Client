@@ -231,4 +231,3 @@ D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxR
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.ComponentModel.TypeConverter.SR.resw
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.Runtime.InteropServices.RuntimeInformation.SR.resw
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.Runtime.Serialization.Formatters.SR.resw
-D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\M3UParser.dll

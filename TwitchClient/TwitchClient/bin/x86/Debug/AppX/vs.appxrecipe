@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-20T20:21:24.255</Modified>
+      <Modified>2018-03-20T22:24:39.999</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.exe">
       <PackagePath>entrypoint\TwitchClient.exe</PackagePath>
-      <Modified>2018-03-20T20:21:23.927</Modified>
+      <Modified>2018-03-20T22:24:39.663</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\FFmpegInterop.dll">
       <PackagePath>FFmpegInterop.dll</PackagePath>
@@ -70,10 +70,6 @@
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\swscale-4.dll">
       <PackagePath>swscale-4.dll</PackagePath>
       <Modified>2017-03-11T09:45:14.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\m3uparser\1.0.0.1\lib\portable-net45+wp8+win8\M3UParser.dll">
-      <PackagePath>M3UParser.dll</PackagePath>
-      <Modified>2014-05-18T13:46:24.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\microsoft.csharp\4.3.0\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -608,11 +604,11 @@
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-20T20:20:44.507</Modified>
+      <Modified>2018-03-20T21:22:10.360</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\TwitchClient.exe">
       <PackagePath>TwitchClient.exe</PackagePath>
-      <Modified>2018-03-20T20:21:24.253</Modified>
+      <Modified>2018-03-20T22:24:39.996</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text;
+using System.Collections.Generic;
 
 namespace TwitchClient
 {
@@ -61,13 +62,12 @@ namespace TwitchClient
             Debug.WriteLine("sig: " + obj.sig);
 
             string m3u = await http.Get(String.Format(USHER_API, "arteezy", obj.token, obj.sig, 9999));
-            string[] m3uLines = m3u.Split( new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None );
+
 
             Debug.WriteLine("M3U8:");
             Debug.WriteLine(m3u);
 
-            //var m3uParsed = 
-            //Debug.WriteLine(m3uParsed);
+            List<M3U> m3uParsed = M3UParser.Parse(m3u);
 
             Debug.WriteLine("Done");
 
