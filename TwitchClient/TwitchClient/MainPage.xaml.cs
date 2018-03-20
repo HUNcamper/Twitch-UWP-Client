@@ -10,7 +10,7 @@ using Windows.Storage.Streams;
 using PlaylistsNET.Content;
 using PlaylistsNET.Model;
 using System.IO;
-
+using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -28,6 +28,13 @@ namespace TwitchClient
 
         private FFmpegInteropMSS FFmpegMSS;
 
+        private struct JSONTokenApiResponse
+        {
+            public string token;
+            public string sig;
+            public bool mobile_restricted;
+        }
+
         private async void AppBar_OpenFile(object sender, TappedRoutedEventArgs e)
         {
             // channel, token, sig, random
@@ -36,11 +43,30 @@ namespace TwitchClient
             // channel, client_id
             string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
 
-            string json = await HTTPGet(String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
+            HttpClientHandler hch = new HttpClientHandler();
+            hch.Proxy = null;
+            hch.UseProxy = false;
 
+            HttpClient HTTPClient = new HttpClient(hch);
+
+            string json = await HTTPGet(HTTPClient, String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
+
+            JSONTokenApiResponse obj = JsonConvert.DeserializeObject<JSONTokenApiResponse>(json);
+            Debug.WriteLine("JSON:");
+            Debug.WriteLine(obj);
+
+            Debug.WriteLine(json);
+
+            Debug.WriteLine("token: " + obj.token);
+            Debug.WriteLine("sig: " + obj.sig);
+
+            string m3u8 = await HTTPGet(HTTPClient, String.Format(USHER_API, "arteezy", obj.token, obj.sig, 9999));
+
+            Debug.WriteLine("M3U8:");
+            Debug.WriteLine(m3u8);
             //WplContent content = new WplContent();
-            //WplPlaylist playlist = content.GetFromStream();
-
+            //WplPlaylist playlist = content.GetFromStream(StringToStream(m3u8));
+            Debug.WriteLine("Done");
             #region File Media Player
 
             /*
@@ -177,17 +203,14 @@ namespace TwitchClient
 
         // TEMPORARY STUFF!!!
 
-        private async Task<string> HTTPGet(string url)
+        private async Task<string> HTTPGet(HttpClient client, string url)
         {
             Debug.WriteLine("GETTING {0}", url);
-            using (var client = new HttpClient())
+            using (var r = await client.GetAsync(new Uri(url)))
             {
-                using (var r = await client.GetAsync(new Uri(url)))
-                {
-                    string result = await r.Content.ReadAsStringAsync();
-                    Debug.WriteLine("COMPLETED");
-                    return result;
-                }
+                string result = await r.Content.ReadAsStringAsync();
+                Debug.WriteLine("COMPLETED");
+                return result;
             }
         }
 

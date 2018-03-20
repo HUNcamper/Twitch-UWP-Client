@@ -221,3 +221,14 @@ D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\swr
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\swscale-4.dll
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\FFmpegInterop.winmd
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Playlists.NET.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Newtonsoft.Json.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\System.Console.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\System.ComponentModel.Primitives.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\System.ComponentModel.TypeConverter.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\System.Runtime.Serialization.Formatters.dll
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.Console.SR.resw
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.ComponentModel.Primitives.SR.resw
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.ComponentModel.TypeConverter.SR.resw
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.Runtime.InteropServices.RuntimeInformation.SR.resw
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\FxResources.System.Runtime.Serialization.Formatters.SR.resw
