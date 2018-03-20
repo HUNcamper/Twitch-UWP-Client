@@ -7,6 +7,14 @@ using FFmpegInterop;
 using Windows.UI.Popups;
 using Windows.Media.Core;
 using Windows.Storage.Streams;
+using PlaylistsNET.Content;
+using PlaylistsNET.Model;
+using System.IO;
+
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Net.Http;
+using System.Text;
 
 namespace TwitchClient
 {
@@ -14,6 +22,7 @@ namespace TwitchClient
     {
         public MainPage()
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             this.InitializeComponent();
         }
 
@@ -21,6 +30,20 @@ namespace TwitchClient
 
         private async void AppBar_OpenFile(object sender, TappedRoutedEventArgs e)
         {
+            // channel, token, sig, random
+            string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
+
+            // channel, client_id
+            string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
+
+            string json = await HTTPGet(String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
+
+            //WplContent content = new WplContent();
+            //WplPlaylist playlist = content.GetFromStream();
+
+            #region File Media Player
+
+            /*
             var picker = new FileOpenPicker();
 
             picker.ViewMode = PickerViewMode.Thumbnail;
@@ -125,6 +148,9 @@ namespace TwitchClient
 
                 }
             }
+            */
+
+            #endregion
         }
 
         private void mediaPlayer_MediaOpened(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -147,6 +173,32 @@ namespace TwitchClient
             {
                 CMDBar.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
+        }
+
+        // TEMPORARY STUFF!!!
+
+        private async Task<string> HTTPGet(string url)
+        {
+            Debug.WriteLine("GETTING {0}", url);
+            using (var client = new HttpClient())
+            {
+                using (var r = await client.GetAsync(new Uri(url)))
+                {
+                    string result = await r.Content.ReadAsStringAsync();
+                    Debug.WriteLine("COMPLETED");
+                    return result;
+                }
+            }
+        }
+
+        private Stream StringToStream(string s)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
         }
     }
 }

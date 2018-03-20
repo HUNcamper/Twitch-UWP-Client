@@ -34,6 +34,13 @@
       <RootEvent Name="MediaEnded" />
       <RootEvent Name="Tapped" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
     <RootType FullName="TwitchClient.MainPage" />
   </Roots.RootTypes>
 </Roots>

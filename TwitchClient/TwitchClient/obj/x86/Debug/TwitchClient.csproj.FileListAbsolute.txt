@@ -220,3 +220,4 @@ D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\avu
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\swresample-2.dll
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\swscale-4.dll
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\FFmpegInterop.winmd
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Playlists.NET.dll
