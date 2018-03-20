@@ -30,7 +30,7 @@ namespace TwitchClient
         /// <returns>List of M3U objects with stream info</returns>
         public static List<M3U> Parse(string m3uRaw)
         {
-            string[] lines = m3uRaw.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            string[] lines = m3uRaw.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             List<M3U> m3uList = new List<M3U>();
 
             // Invalid argument format exceptions
@@ -47,8 +47,8 @@ namespace TwitchClient
                 {
                     cObj = new M3U();
                     cObj.bandwidth = -1;
-                    cObj.name = "NULL";
-                    cObj.url = "NULL";
+                    cObj.name = null;
+                    cObj.url = null;
                     Match streamName = regexMediaName.Match(line);
 
                     if (streamName.Success) cObj.name = streamName.Groups[1].Value;
@@ -77,7 +77,7 @@ namespace TwitchClient
                 }
 
                 // If all values set, add to list
-                if (cObj.name != "NULL" && cObj.bandwidth != -1 && cObj.url != "NULL")
+                if (cObj.name != null && cObj.bandwidth != -1 && cObj.url != null)
                 {
                     m3uList.Add(cObj);
                 }

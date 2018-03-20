@@ -64,7 +64,7 @@ namespace TwitchClient
 
             Debug.WriteLine("Done");
 
-            Uri streamUri = new Uri(m3uParsed[0].url);
+            //Uri streamUri = new Uri(m3uParsed[0].url);
 
             //mediaPlayer.Source = MediaSource.CreateFromUri(streamUri);
 
