@@ -17,7 +17,7 @@
         </Grid>
         <Grid x:Name="gridPlayerArea" HorizontalAlignment="Stretch" Margin="0,0,436,0" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" >
             <ProgressRing x:Name="ringVideoLoading" HorizontalAlignment="Center" Margin="0,301,0,301" VerticalAlignment="Center" IsActive="False" Height="118" Width="118"/>
-            <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" MediaOpened="mediaPlayer_MediaOpened" MediaEnded="mediaPlayer_MediaEnded" Tapped="mediaPlayer_Tapped" Margin="0,0,0,0" HorizontalAlignment="Stretch"/>
+            <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" MediaOpened="mediaPlayer_MediaOpened" Tapped="mediaPlayer_Tapped" Margin="0,0,0,0" HorizontalAlignment="Stretch"/>
         </Grid>
 
     </Grid>
