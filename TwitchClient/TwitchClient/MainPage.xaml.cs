@@ -14,6 +14,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text;
 using System.Collections.Generic;
+using Windows.UI.ViewManagement;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using TwitchClient.Pages;
 
 namespace TwitchClient
 {
@@ -25,258 +30,72 @@ namespace TwitchClient
             this.InitializeComponent();
         }
 
-        private FFmpegInteropMSS FFmpegMSS;
+		private async void bLogin_Click(object sender, RoutedEventArgs e)
+		{
+			CoreApplicationView newView = CoreApplication.CreateNewView();
+			int newViewId = 0;
+			await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+			{
+				Frame frame = new Frame();
+				frame.Navigate(typeof(TwitchLogin), null);
+				Window.Current.Content = frame;
+				Window.Current.Activate();
+				newViewId = ApplicationView.GetForCurrentView().Id;
+			});
+			bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
 
-        private List<M3U> m3uParsed = new List<M3U>();
+			await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+			{
+				//do something with the secondary view's UI
+				//this code now runs on the secondary view's thread
+				//Window.Current here refers to the secondary view's Window
 
-        // channel, token, sig, random
-        private string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
+				//the following example changes the background color of the page
+				var frame = (Frame)Window.Current.Content;
+				var page = (TwitchLogin)frame.Content;
+				var grid = (Grid)page.Content;
+				var webView = (WebView) grid.Children[0];
 
-        // channel, client_id
-        private string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
+				string authUrl = "https://id.twitch.tv/oauth2/authorize?client_id=ejho3mdl9ugrndt9ngwjf1dp3ebgkn&redirect_uri=http://localhost&response_type=token+id_token&scope=openid&force_verify=true";
 
-        // Is there stream data correctly loaded?
-        private bool loaded = false;
+				Uri loginUri = new Uri(authUrl);
+				webView.Source = loginUri;
 
-        private struct JSONTokenApiResponse
-        {
-            public string token;
-            public string sig;
-            public bool mobile_restricted;
-        }
+				string error = null;
 
-        private async void AppBar_OpenFile(object sender, TappedRoutedEventArgs e)
-        {
-            #region File Media Player
+				while (!webView.Source.ToString().StartsWith("http://localhost"))
+				{
+					frame = (Frame)Window.Current.Content;
+					page = (TwitchLogin)frame.Content;
+					grid = (Grid)page.Content;
+					webView = (WebView)grid.Children[0];
 
-            /*
-            var picker = new FileOpenPicker();
+					if (!Window.Current.Visible)
+					{
+						error = "Window was closed";
+						break;
+					}
 
-            picker.ViewMode = PickerViewMode.Thumbnail;
-
-            picker.SuggestedStartLocation = PickerLocationId.VideosLibrary;
-
-            picker.FileTypeFilter.Add(".3gp");
-            picker.FileTypeFilter.Add(".avi");
-            picker.FileTypeFilter.Add(".fla");
-            picker.FileTypeFilter.Add(".flv");
-            picker.FileTypeFilter.Add(".mkv");
-            picker.FileTypeFilter.Add(".mov");
-            picker.FileTypeFilter.Add(".mp4");
-            picker.FileTypeFilter.Add(".mpeg");
-            picker.FileTypeFilter.Add(".mpeg2");
-            picker.FileTypeFilter.Add(".mpg");
-            picker.FileTypeFilter.Add(".rm");
-            picker.FileTypeFilter.Add(".rmvb");
-            picker.FileTypeFilter.Add(".vob");
-            picker.FileTypeFilter.Add(".wmv");
-            picker.FileTypeFilter.Add(".webm");
-
-            StorageFile file = await picker.PickSingleFileAsync();
-
-            if (file != null)
-            {
-                // Try and pause or stop the current media
-                if (mediaPlayer.CanPause == true)
-                {
-                    try
-                    {
-                        mediaPlayer.Pause();
-                    }
-                    catch(Exception)
-                    {
-                        
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        mediaPlayer.Stop();
-                    }
-                    catch(Exception)
-                    {
-
-                    }
-                }
-
-                IRandomAccessStream readStream = await file.OpenAsync(FileAccessMode.Read);
-
-                try
-                {
-                    FFmpegMSS = FFmpegInteropMSS.CreateFFmpegInteropMSSFromStream(readStream, true, true);
-                    MediaStreamSource mss = FFmpegMSS.GetMediaStreamSource();
-
-                    if (mss != null)
-                    {
-
-                        #region Enable the hidden transport controls
-
-                        mediaPlayer.AreTransportControlsEnabled = true;
-
-                        mediaPlayer.TransportControls.IsFastForwardButtonVisible = true;
-                        mediaPlayer.TransportControls.IsFastForwardEnabled = true;
-
-                        mediaPlayer.TransportControls.IsFastRewindButtonVisible = true;
-                        mediaPlayer.TransportControls.IsFastRewindEnabled = true;
-
-                        mediaPlayer.TransportControls.IsNextTrackButtonVisible = true;
-                        mediaPlayer.TransportControls.IsPreviousTrackButtonVisible = true;
-
-                        mediaPlayer.TransportControls.IsPlaybackRateButtonVisible = true;
-                        mediaPlayer.TransportControls.IsPlaybackRateEnabled = true;
-
-                        mediaPlayer.TransportControls.IsSkipBackwardButtonVisible = true;
-                        mediaPlayer.TransportControls.IsSkipBackwardEnabled = true;
-
-                        mediaPlayer.TransportControls.IsSkipForwardButtonVisible = true;
-                        mediaPlayer.TransportControls.IsSkipForwardEnabled = true;
-
-                        mediaPlayer.TransportControls.IsStopButtonVisible = true;
-                        mediaPlayer.TransportControls.IsStopEnabled = true;
-
-                        mediaPlayer.TransportControls.IsRightTapEnabled = true;
-
-                        #endregion
-
-                        mediaPlayer.SetMediaStreamSource(mss);
-
-                        mediaPlayer.Play();
-                    }
-                    else
-                    {
-                        var msg = new MessageDialog("An error has occurred while opening the file.");
-                        await msg.ShowAsync();
-                    }
-                }
-                catch(Exception)
-                {
-
-                }
-            }
-            */
-
-            #endregion
-        }
-
-        private async void bGetStream_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            loaded = false;
-            cbQualitySelect.Items.Clear();
-
-            HTTP http = new HTTP();
-
-            string username = tbTest.Text;
-
-            string json = await http.Get(String.Format(TOKEN_API, username, "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
-
-            JSONTokenApiResponse obj = JsonConvert.DeserializeObject<JSONTokenApiResponse>(json);
-            Debug.WriteLine("JSON:");
-            Debug.WriteLine(obj);
-
-            Debug.WriteLine(json);
-
-            Debug.WriteLine("token: " + obj.token);
-            Debug.WriteLine("sig: " + obj.sig);
-
-            string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
-
-            Debug.WriteLine("M3U8:");
-            Debug.WriteLine(m3u);
-
-            string infoText;
-
-            bool success;
-
-            try
-            {
-                m3uParsed = M3UParser.Parse(m3u);
-                infoText = "Success!\nSelect the stream quality below to continue";
-                success = true;
-            }
-            catch (Exception exception)
-            {
-                infoText = exception.ToString();
-                success = false;
-            }
-
-            tInfo.Text = infoText;
-
-            if (success)
-            {
-                foreach (var stream in m3uParsed)
-                {
-                    cbQualitySelect.Items.Add(stream.name);
+					Debug.WriteLine(String.Format("Waiting... {0}", webView.Source.ToString()));
+					await Task.Delay(25);
 				}
 
-				// Load the twitch chat via embedding it
-				Uri chatUri = new Uri(String.Format("https://www.twitch.tv/{0}/chat", username));
-				webView.Source = chatUri;
+				if (error.Length != 0)
+				{
+					Debug.WriteLine(String.Format("Error: {0}", error));
+				}
+				else
+				{
+					Debug.WriteLine(String.Format("DONE! Link: {0}", webView.Source.ToString()));
+				}
+			});
 
-				loaded = true;
-            }
-
-            Debug.WriteLine("Done");
-        }
-
-        private void cbQualitySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (loaded)
-            {
-				ringVideoLoading.IsActive = true;
-
-				// Set media player source to stream URL
-				int selected = cbQualitySelect.SelectedIndex;
-                Uri streamUri = new Uri(m3uParsed[selected].url);
-                mediaPlayer.Source = streamUri;
-                mediaPlayer.Play();
-
-				#region Set transport controls
-				
-				mediaPlayer.AreTransportControlsEnabled = true;
-				
-				mediaPlayer.TransportControls.IsFastForwardButtonVisible = false;
-				mediaPlayer.TransportControls.IsFastForwardEnabled = false;
-				
-				mediaPlayer.TransportControls.IsFastRewindButtonVisible = false;
-				mediaPlayer.TransportControls.IsFastRewindEnabled = false;
-				
-				mediaPlayer.TransportControls.IsNextTrackButtonVisible = false;
-				mediaPlayer.TransportControls.IsPreviousTrackButtonVisible = false;
-				
-				mediaPlayer.TransportControls.IsPlaybackRateButtonVisible = false;
-				mediaPlayer.TransportControls.IsPlaybackRateEnabled = false;
-				
-				mediaPlayer.TransportControls.IsSkipBackwardButtonVisible = false;
-				mediaPlayer.TransportControls.IsSkipBackwardEnabled = false;
-				
-				mediaPlayer.TransportControls.IsSkipForwardButtonVisible = false;
-				mediaPlayer.TransportControls.IsSkipForwardEnabled = false;
-				
-				mediaPlayer.TransportControls.IsStopButtonVisible = false;
-				mediaPlayer.TransportControls.IsStopEnabled = false;
-
-				mediaPlayer.TransportControls.IsSeekEnabled = false;
-
-				mediaPlayer.TransportControls.IsZoomButtonVisible = true;
-				mediaPlayer.TransportControls.IsZoomEnabled = true;
-				
-				mediaPlayer.TransportControls.IsRightTapEnabled = true;
-				
-				
-				#endregion
-			}
-        }
-
-
-		private void mediaPlayer_MediaOpened(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-		{
-
+			//Frame.Navigate(typeof(TwitchStream));
 		}
 
-		private void mediaPlayer_Tapped(object sender, TappedRoutedEventArgs e)
+		private void bStream_Click(object sender, RoutedEventArgs e)
 		{
-
+			Frame.Navigate(typeof(TwitchStream));
 		}
 	}
 }

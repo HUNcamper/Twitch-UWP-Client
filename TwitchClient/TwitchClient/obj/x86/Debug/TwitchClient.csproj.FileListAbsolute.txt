@@ -230,3 +230,14 @@ D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\qua
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\qualifiers.txt.intermediate
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\ProjectArchitectures.txt
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\TwitchClient.csprojResolveAssemblyReference.cache
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Pages\TwitchLogin.xbf
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchLogin.g.i.cs
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchLogin.g.cs
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchLogin.xaml
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchLogin.xbf
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Pages\TwitchStream.xbf
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchStream.g.i.cs
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchStream.g.cs
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchStream.xaml
+D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\obj\x86\Debug\Pages\TwitchStream.xbf
