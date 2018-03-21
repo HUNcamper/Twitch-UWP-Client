@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" MediaOpened="mediaPlayer_MediaOpened" MediaEnded="mediaPlayer_MediaEnded" Tapped="mediaPlayer_Tapped" Margin="0,0,413,0"/>
         <TextBox x:Name="tbTest" Margin="0,14,144,0" Text="" VerticalAlignment="Top" PlaceholderText="Twitch Channel Name" HorizontalAlignment="Right" Width="263"/>
-        <TextBlock x:Name="tInfo" HorizontalAlignment="Right" Margin="0,106,170,0" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="tInfo" HorizontalAlignment="Right" Margin="0,109,29,0" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" VerticalAlignment="Top" Width="376" Height="164" TextAlignment="Left"/>
         <ComboBox x:Name="cbQualitySelect" HorizontalAlignment="Right" Margin="0,62,25,0" VerticalAlignment="Top" Width="382" SelectionChanged="cbQualitySelect_SelectionChanged"/>
         <Button x:Name="bGetStream" Content="Get Stream" HorizontalAlignment="Right" Margin="0,13,25,0" VerticalAlignment="Top" Width="100" Click="bGetStream_Click"/>
 

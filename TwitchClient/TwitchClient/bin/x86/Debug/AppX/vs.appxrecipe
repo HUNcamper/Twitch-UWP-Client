@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-21T09:32:10.267</Modified>
+      <Modified>2018-03-21T10:36:12.579</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.exe">
       <PackagePath>entrypoint\TwitchClient.exe</PackagePath>
-      <Modified>2018-03-21T09:32:09.448</Modified>
+      <Modified>2018-03-21T10:36:11.824</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\FFmpegInterop.dll">
       <PackagePath>FFmpegInterop.dll</PackagePath>
@@ -595,7 +595,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.xr.xml">
       <PackagePath>TwitchClient.xr.xml</PackagePath>
-      <Modified>2018-03-21T09:32:09.286</Modified>
+      <Modified>2018-03-21T10:36:11.663</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -604,11 +604,11 @@
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-21T09:32:09.866</Modified>
+      <Modified>2018-03-21T10:36:12.256</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\TwitchClient.exe">
       <PackagePath>TwitchClient.exe</PackagePath>
-      <Modified>2018-03-21T09:32:10.265</Modified>
+      <Modified>2018-03-21T10:36:12.576</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
