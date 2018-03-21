@@ -27,6 +27,17 @@ namespace TwitchClient
 
         private FFmpegInteropMSS FFmpegMSS;
 
+        private List<M3U> m3uParsed = new List<M3U>();
+
+        // channel, token, sig, random
+        private string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
+
+        // channel, client_id
+        private string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
+
+        // Is there stream data correctly loaded?
+        private bool loaded = false;
+
         private struct JSONTokenApiResponse
         {
             public string token;
@@ -163,13 +174,10 @@ namespace TwitchClient
 
         }
 
-        private async void bStartStream_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void bGetStream_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            // channel, token, sig, random
-            string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
-
-            // channel, client_id
-            string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
+            loaded = false;
+            cbQualitySelect.Items.Clear();
 
             HTTP http = new HTTP();
 
@@ -193,17 +201,15 @@ namespace TwitchClient
 
             string infoText;
 
-            List<M3U> m3uParsed = new List<M3U>();
-
             bool success;
 
             try
             {
                 m3uParsed = M3UParser.Parse(m3u);
-                infoText = String.Format("Success!\nStream quality: {0}\nBandwidth: {1}", m3uParsed[0].name, m3uParsed[0].bandwidth);
+                infoText = "Success!\nSelect the stream quality below to continue";
                 success = true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 infoText = exception.ToString();
                 success = false;
@@ -213,13 +219,26 @@ namespace TwitchClient
 
             if (success)
             {
-                // Set media player source to stream URL
-                Uri streamUri = new Uri(m3uParsed[0].url);
-                mediaPlayer.Source = streamUri;
-                mediaPlayer.Play();
+                foreach (var stream in m3uParsed)
+                {
+                    cbQualitySelect.Items.Add(stream.name);
+                }
+                loaded = true;
             }
 
             Debug.WriteLine("Done");
+        }
+
+        private void cbQualitySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (loaded)
+            {
+                // Set media player source to stream URL
+                int selected = cbQualitySelect.SelectedIndex;
+                Uri streamUri = new Uri(m3uParsed[selected].url);
+                mediaPlayer.Source = streamUri;
+                mediaPlayer.Play();
+            }
         }
     }
 }
