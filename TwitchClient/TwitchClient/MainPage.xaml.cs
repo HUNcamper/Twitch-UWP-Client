@@ -159,21 +159,6 @@ namespace TwitchClient
             #endregion
         }
 
-        private void mediaPlayer_MediaOpened(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-
-        }
-
-        private void mediaPlayer_MediaEnded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-
-        }
-
-        private void mediaPlayer_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
-        }
-
         private async void bGetStream_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             loaded = false;
@@ -222,8 +207,13 @@ namespace TwitchClient
                 foreach (var stream in m3uParsed)
                 {
                     cbQualitySelect.Items.Add(stream.name);
-                }
-                loaded = true;
+				}
+
+				// Load the twitch chat via embedding it
+				Uri chatUri = new Uri(String.Format("https://www.twitch.tv/{0}/chat", username));
+				webView.Source = chatUri;
+
+				loaded = true;
             }
 
             Debug.WriteLine("Done");
@@ -233,12 +223,60 @@ namespace TwitchClient
         {
             if (loaded)
             {
-                // Set media player source to stream URL
-                int selected = cbQualitySelect.SelectedIndex;
+				ringVideoLoading.IsActive = true;
+
+				// Set media player source to stream URL
+				int selected = cbQualitySelect.SelectedIndex;
                 Uri streamUri = new Uri(m3uParsed[selected].url);
                 mediaPlayer.Source = streamUri;
                 mediaPlayer.Play();
-            }
+
+				#region Set transport controls
+				
+				mediaPlayer.AreTransportControlsEnabled = true;
+				
+				mediaPlayer.TransportControls.IsFastForwardButtonVisible = false;
+				mediaPlayer.TransportControls.IsFastForwardEnabled = false;
+				
+				mediaPlayer.TransportControls.IsFastRewindButtonVisible = false;
+				mediaPlayer.TransportControls.IsFastRewindEnabled = false;
+				
+				mediaPlayer.TransportControls.IsNextTrackButtonVisible = false;
+				mediaPlayer.TransportControls.IsPreviousTrackButtonVisible = false;
+				
+				mediaPlayer.TransportControls.IsPlaybackRateButtonVisible = false;
+				mediaPlayer.TransportControls.IsPlaybackRateEnabled = false;
+				
+				mediaPlayer.TransportControls.IsSkipBackwardButtonVisible = false;
+				mediaPlayer.TransportControls.IsSkipBackwardEnabled = false;
+				
+				mediaPlayer.TransportControls.IsSkipForwardButtonVisible = false;
+				mediaPlayer.TransportControls.IsSkipForwardEnabled = false;
+				
+				mediaPlayer.TransportControls.IsStopButtonVisible = false;
+				mediaPlayer.TransportControls.IsStopEnabled = false;
+
+				mediaPlayer.TransportControls.IsSeekEnabled = false;
+
+				mediaPlayer.TransportControls.IsZoomButtonVisible = true;
+				mediaPlayer.TransportControls.IsZoomEnabled = true;
+				
+				mediaPlayer.TransportControls.IsRightTapEnabled = true;
+				
+				
+				#endregion
+			}
         }
-    }
+
+
+		private void mediaPlayer_MediaOpened(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+		{
+
+		}
+
+		private void mediaPlayer_Tapped(object sender, TappedRoutedEventArgs e)
+		{
+
+		}
+	}
 }
