@@ -6,18 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Page.BottomAppBar>
-        <CommandBar x:Name="CMDBar" IsOpen="False">
-            <CommandBar.Content>
-                <Grid/>
-            </CommandBar.Content>
-            <AppBarButton Icon="Library" Label="Open File" Tapped="AppBar_OpenFile"/>
-        </CommandBar>
-    </Page.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform" MediaOpened="mediaPlayer_MediaOpened" MediaEnded="mediaPlayer_MediaEnded" Tapped="mediaPlayer_Tapped"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="621,374,0,0" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" MediaOpened="mediaPlayer_MediaOpened" MediaEnded="mediaPlayer_MediaEnded" Tapped="mediaPlayer_Tapped" Margin="0,0,413,0"/>
+        <TextBox x:Name="tbTest" HorizontalAlignment="Left" Margin="915,21,0,0" Text="" VerticalAlignment="Top" Width="328" PlaceholderText="Twitch Channel Name"/>
+        <TextBlock x:Name="tInfo" HorizontalAlignment="Left" Margin="916,114,0,0" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="bStartStream" Content="Start Stream" HorizontalAlignment="Left" Margin="916,69,0,0" VerticalAlignment="Top" Click="bStartStream_Click"/>
 
     </Grid>
 </Page>

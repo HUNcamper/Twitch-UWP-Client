@@ -44,7 +44,9 @@ namespace TwitchClient
 
             HTTP http = new HTTP();
 
-            string json = await http.Get(String.Format(TOKEN_API, "arteezy", "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
+            string username = tbTest.Text;
+
+            string json = await http.Get(String.Format(TOKEN_API, username, "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
 
             JSONTokenApiResponse obj = JsonConvert.DeserializeObject<JSONTokenApiResponse>(json);
             Debug.WriteLine("JSON:");
@@ -55,7 +57,7 @@ namespace TwitchClient
             Debug.WriteLine("token: " + obj.token);
             Debug.WriteLine("sig: " + obj.sig);
 
-            string m3u = await http.Get(String.Format(USHER_API, "arteezy", obj.token, obj.sig, 9999));
+            string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
 
             Debug.WriteLine("M3U8:");
             Debug.WriteLine(m3u);
@@ -64,9 +66,10 @@ namespace TwitchClient
 
             Debug.WriteLine("Done");
 
-            //Uri streamUri = new Uri(m3uParsed[0].url);
+            Uri streamUri = new Uri(m3uParsed[0].url);
 
-            //mediaPlayer.Source = MediaSource.CreateFromUri(streamUri);
+            mediaPlayer.Source = streamUri;
+            mediaPlayer.Play();
 
             #region File Media Player
 
@@ -182,24 +185,76 @@ namespace TwitchClient
 
         private void mediaPlayer_MediaOpened(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            CMDBar.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
         }
 
         private void mediaPlayer_MediaEnded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            CMDBar.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
         }
 
         private void mediaPlayer_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (CMDBar.Visibility == Windows.UI.Xaml.Visibility.Visible)
+
+        }
+
+        private async void bStartStream_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            // channel, token, sig, random
+            string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
+
+            // channel, client_id
+            string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
+
+            HTTP http = new HTTP();
+
+            string username = tbTest.Text;
+
+            string json = await http.Get(String.Format(TOKEN_API, username, "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
+
+            JSONTokenApiResponse obj = JsonConvert.DeserializeObject<JSONTokenApiResponse>(json);
+            Debug.WriteLine("JSON:");
+            Debug.WriteLine(obj);
+
+            Debug.WriteLine(json);
+
+            Debug.WriteLine("token: " + obj.token);
+            Debug.WriteLine("sig: " + obj.sig);
+
+            string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
+
+            Debug.WriteLine("M3U8:");
+            Debug.WriteLine(m3u);
+
+            string infoText;
+
+            List<M3U> m3uParsed = new List<M3U>();
+
+            bool success;
+
+            try
             {
-                CMDBar.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                m3uParsed = M3UParser.Parse(m3u);
+                infoText = String.Format("Success!\nStream quality: {0}\nBandwidth: {1}", m3uParsed[0].name, m3uParsed[0].bandwidth);
+                success = true;
             }
-            else
+            catch(Exception exception)
             {
-                CMDBar.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                infoText = exception.ToString();
+                success = false;
             }
+
+            tInfo.Text = infoText;
+
+            if (success)
+            {
+                // Set media player source to stream URL
+                Uri streamUri = new Uri(m3uParsed[0].url);
+                mediaPlayer.Source = streamUri;
+                mediaPlayer.Play();
+            }
+
+            Debug.WriteLine("Done");
         }
     }
 }
