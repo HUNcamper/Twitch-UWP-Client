@@ -36,41 +36,6 @@ namespace TwitchClient
 
         private async void AppBar_OpenFile(object sender, TappedRoutedEventArgs e)
         {
-            // channel, token, sig, random
-            string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
-
-            // channel, client_id
-            string TOKEN_API = "http://api.twitch.tv/api/channels/{0}/access_token?client_id={1}";
-
-            HTTP http = new HTTP();
-
-            string username = tbTest.Text;
-
-            string json = await http.Get(String.Format(TOKEN_API, username, "ejho3mdl9ugrndt9ngwjf1dp3ebgkn"));
-
-            JSONTokenApiResponse obj = JsonConvert.DeserializeObject<JSONTokenApiResponse>(json);
-            Debug.WriteLine("JSON:");
-            Debug.WriteLine(obj);
-
-            Debug.WriteLine(json);
-
-            Debug.WriteLine("token: " + obj.token);
-            Debug.WriteLine("sig: " + obj.sig);
-
-            string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
-
-            Debug.WriteLine("M3U8:");
-            Debug.WriteLine(m3u);
-
-            List<M3U> m3uParsed = M3UParser.Parse(m3u);
-
-            Debug.WriteLine("Done");
-
-            Uri streamUri = new Uri(m3uParsed[0].url);
-
-            mediaPlayer.Source = streamUri;
-            mediaPlayer.Play();
-
             #region File Media Player
 
             /*

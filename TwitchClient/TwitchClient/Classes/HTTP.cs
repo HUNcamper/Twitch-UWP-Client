@@ -23,7 +23,6 @@ namespace TwitchClient
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="httpclient">Http Client</param>
         public HTTP()
         {
             // Don't use proxy, it just slows requests
@@ -37,9 +36,8 @@ namespace TwitchClient
         /// <summary>
         /// Send GET request.
         /// </summary>
-        /// <param name="client">Http Client</param>
-        /// <param name="url">URI to send the request to</param>
-        /// <returns>requested URI's response</returns>
+        /// <param name="url">URL to send the request to</param>
+        /// <returns>requested URL's response</returns>
         public async Task<string> Get(string url)
         {
             Debug.WriteLine("[HTTP] GETTING {0}", url);
