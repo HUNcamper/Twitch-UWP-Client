@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\HTTP.cs" />
+    <Compile Include="Classes\JSON\JSONTwitchAPI.cs" />
     <Compile Include="Classes\M3UParser.cs" />
     <Compile Include="Classes\TwitchAPI.cs" />
     <Compile Include="MainPage.xaml.cs">

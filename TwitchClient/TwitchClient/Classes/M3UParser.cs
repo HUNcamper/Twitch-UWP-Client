@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace TwitchClient
+namespace TwitchClient.Classes
 {
     /// <summary>
     /// Struct for storing parsed M3U stream data.

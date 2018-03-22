@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
+using TwitchClient.Classes;
 
 namespace TwitchClient.Pages
 {

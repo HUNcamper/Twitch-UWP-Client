@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-22T17:26:05.306</Modified>
+      <Modified>2018-03-22T20:49:21.095</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.exe">
       <PackagePath>entrypoint\TwitchClient.exe</PackagePath>
-      <Modified>2018-03-22T17:26:05.003</Modified>
+      <Modified>2018-03-22T20:49:19.444</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\FFmpegInterop.dll">
       <PackagePath>FFmpegInterop.dll</PackagePath>
@@ -557,45 +557,45 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2018-03-20T10:51:55.000</Modified>
+      <Modified>2018-03-22T18:23:48.479</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.468</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.468</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.469</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.469</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.470</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.471</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-19T15:44:14.928</Modified>
+      <Modified>2018-03-22T18:23:48.471</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.xr.xml">
       <PackagePath>TwitchClient.xr.xml</PackagePath>
-      <Modified>2018-03-22T17:12:58.115</Modified>
+      <Modified>2018-03-22T20:49:19.278</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.16299.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -604,11 +604,11 @@
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-22T17:12:59.603</Modified>
+      <Modified>2018-03-22T20:49:20.685</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\TwitchClient.exe">
       <PackagePath>TwitchClient.exe</PackagePath>
-      <Modified>2018-03-22T17:26:05.303</Modified>
+      <Modified>2018-03-22T20:49:21.092</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

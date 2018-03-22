@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TwitchClient
+namespace TwitchClient.Classes
 {
     /// <summary>
     /// Class for handling HTTP requests
