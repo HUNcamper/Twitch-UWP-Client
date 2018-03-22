@@ -34,7 +34,7 @@ namespace TwitchClient.Classes
 		}
 
 		/// <summary>
-		/// Get the current user info
+		/// Get the current user's info
 		/// </summary>
 		/// <returns>JSONTwitch User object</returns>
 		public async Task<JSONTwitch.User> GetUser()

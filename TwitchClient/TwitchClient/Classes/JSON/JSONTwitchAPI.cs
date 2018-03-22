@@ -8,6 +8,7 @@ namespace TwitchClient.Classes.JSONTwitchAPI
 {
 	class JSONTwitch
 	{
+		// USER CLASS
 		public class UserLinks
 		{
 			public string self { get; set; }

@@ -11,15 +11,18 @@ using TwitchClient.Classes;
 using TwitchClient.Classes.JSONTwitchAPI;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Media;
+using Windows.Security.Credentials;
 
 namespace TwitchClient
 {
     public sealed partial class MainPage : Page
-    {
-        public MainPage()
-        {
-			ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+	{
+		private HTTP httpClient;
+
+		public MainPage()
+		{
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+			httpClient = new HTTP();
             this.InitializeComponent();
         }
 
@@ -85,13 +88,19 @@ namespace TwitchClient
 					Debug.WriteLine(String.Format("User's ID token: {0}", id_token));
 					Debug.WriteLine(String.Format("User's token: {0}", token));
 
-					TwitchAPI twitch = new TwitchAPI("ejho3mdl9ugrndt9ngwjf1dp3ebgkn", token);
 
+					TwitchAPI twitch = new TwitchAPI("ejho3mdl9ugrndt9ngwjf1dp3ebgkn", token);
 					JSONTwitch.User user = await twitch.GetUser();
 					if (user.name != null)
+					{
 						textBlock.Text = String.Format("Welcome back, {0}!", user.name);
-					if (user.logo != null)
-						imageUser.Source = new BitmapImage (new Uri(user.logo));
+						if (user.logo != null)
+							imageUser.Source = new BitmapImage(new Uri(user.logo));
+
+						var vault = new PasswordVault();
+						var cred = new PasswordCredential("twitch", user.name, token);
+						vault.Add(cred);
+					}
 				}
 
 				loginFrame.Visibility = Visibility.Collapsed;
