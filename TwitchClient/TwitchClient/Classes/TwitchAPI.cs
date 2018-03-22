@@ -14,37 +14,36 @@ namespace TwitchClient.Classes
 	/// Class for handling the Twitch API v5
 	/// </summary>
 	class TwitchAPI
-    {
+	{
+		public string OAuthToken { get; set; }
+
 		private HTTP httpClient;
 		private string twitchClientId;
-		private string twitchOAuthToken;
 		
-		public TwitchAPI(string clientId)
+		/// <summary>
+		/// Constructor of the TwitchAPI class
+		/// </summary>
+		/// <param name="clientId">Twitch App's Client ID</param>
+		/// <param name="twitchOAuthToken">Authorized user's OAuth Token</param>
+		public TwitchAPI(string clientId, string twitchOAuthToken = null)
 		{
 			twitchClientId = clientId ?? throw new ArgumentException("clientId must not be null!", "clientId");
+			if (twitchOAuthToken != null) OAuthToken = twitchOAuthToken;
+
 			httpClient = new HTTP();
 		}
 
-		public async Task<JSONTwitch.User> Authorize(string OAuthToken)
+		/// <summary>
+		/// Get the current user info
+		/// </summary>
+		/// <returns>JSONTwitch User object</returns>
+		public async Task<JSONTwitch.User> GetUser()
 		{
-			string user_name = null;
+			if (OAuthToken == null) throw new Exception("Tried to request without OAuth set");
 			string url = String.Format("https://api.twitch.tv/kraken/user?oauth_token={0}", OAuthToken);
 			string json = await httpClient.Get(url);
+
 			JSONTwitch.User user = JsonConvert.DeserializeObject<JSONTwitch.User>(json);
-			if (user.error != null)
-			{
-				Debug.WriteLine(String.Format("Authorization failed: {0}", user.error));
-				return null;
-			}
-			try
-			{
-				user_name = user.display_name;
-				Debug.WriteLine(String.Format("Authorization successful. Username: {0}", user_name));
-			}
-			catch(Exception e)
-			{
-				Debug.WriteLine(String.Format("Authorization failed. Error: {0}", e.ToString()));
-			}
 
 			return user;
 		}

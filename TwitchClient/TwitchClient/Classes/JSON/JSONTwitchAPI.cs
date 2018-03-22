@@ -8,12 +8,12 @@ namespace TwitchClient.Classes.JSONTwitchAPI
 {
 	class JSONTwitch
 	{
-		public class Links
+		public class UserLinks
 		{
 			public string self { get; set; }
 		}
 
-		public class Notifications
+		public class UserNotifications
 		{
 			public bool push { get; set; }
 			public bool email { get; set; }
@@ -30,10 +30,10 @@ namespace TwitchClient.Classes.JSONTwitchAPI
 			public DateTime created_at { get; set; }
 			public DateTime updated_at { get; set; }
 			public string logo { get; set; }
-			public Links _links { get; set; }
+			public UserLinks _links { get; set; }
 			public string email { get; set; }
 			public bool partnered { get; set; }
-			public Notifications notifications { get; set; }
+			public UserNotifications notifications { get; set; }
 		}
 	}
 }

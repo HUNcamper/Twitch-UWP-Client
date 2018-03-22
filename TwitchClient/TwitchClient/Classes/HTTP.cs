@@ -40,7 +40,7 @@ namespace TwitchClient.Classes
         /// <returns>requested URL's response</returns>
         public async Task<string> Get(string url)
         {
-            Debug.WriteLine("[HTTP] GETTING {0}", url);
+            Debug.WriteLine(String.Format("[HTTP] GETTING {0}", url));
             using (var r = await Client.GetAsync(new Uri(url)))
             {
                 string result = await r.Content.ReadAsStringAsync();
