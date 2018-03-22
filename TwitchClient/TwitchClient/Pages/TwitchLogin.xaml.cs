@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,10 +25,25 @@ namespace TwitchClient.Pages
 
 		private void webView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
 		{
-			string url1 = webView.Source.ToString();
 			string url = e.Uri.ToString();
-			//if (url.StartsWith("http://"))
-			textBlock.Text = e.WebErrorStatus + ": " + url;
+
+			Debug.WriteLine(String.Format("FAILED TO LOAD WEBPAGE {0}: {1}", url, e.WebErrorStatus));
+		}
+
+		private void webView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+		{
+			string url = args.Uri.ToString();
+			Debug.WriteLine(String.Format("Attemptiong to visit {0}", url));
+			
+			// Success, the authentication was successfully redirected.
+			// However for some reason the webview would redirect back
+			// to the auth page, making it useless. We have to check
+			// the url before it actually redirects.
+			if (url.StartsWith("http://localhost"))
+			{
+				Debug.WriteLine(String.Format("FOUND AUTH URL: {0}", url));
+				textBlock.Text = url;
+			}
 		}
 	}
 }
