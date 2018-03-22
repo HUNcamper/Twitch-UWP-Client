@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
@@ -25,28 +26,49 @@ namespace TwitchClient.Classes
         /// </summary>
         public HTTP()
         {
-            // Don't use proxy, it just slows requests
-            HttpClientHandler hch = new HttpClientHandler();
-            hch.Proxy = null;
-            hch.UseProxy = false;
+			// Don't use proxy, it just slows requests
+			HttpClientHandler hch = new HttpClientHandler
+			{
+				Proxy = null,
+				UseProxy = false
+			};
 
-            client = new HttpClient(hch);
+			client = new HttpClient(hch);
         }
 
-        /// <summary>
-        /// Send GET request.
-        /// </summary>
-        /// <param name="url">URL to send the request to</param>
-        /// <returns>requested URL's response</returns>
-        public async Task<string> Get(string url)
+		/// <summary>
+		/// Send GET request to the given URL.
+		/// </summary>
+		/// <param name="url">URL to send the request to</param>
+		/// <returns>requested URL's response body</returns>
+		public async Task<string> Get(string url)
         {
             Debug.WriteLine(String.Format("[HTTP] GETTING {0}", url));
             using (var r = await Client.GetAsync(new Uri(url)))
             {
-                string result = await r.Content.ReadAsStringAsync();
-                Debug.WriteLine("[HTTP] COMPLETED");
-                return result;
-            }
+				r.EnsureSuccessStatusCode();
+				Debug.WriteLine("[HTTP] GET COMPLETED");
+				return await r.Content.ReadAsStringAsync();
+			}
         }
+
+		/// <summary>
+		/// Send a POST request to the given URL with the given parameters.
+		/// </summary>
+		/// <param name="url">URL to send the request to</param>
+		/// <param name="parameters">Dictionary consisting of string, string pairs</param>
+		/// <returns>requested URL's response body</returns>
+		public async Task<string> Post(string url, Dictionary<string, string> parameters)
+		{
+			Debug.WriteLine(String.Format("[HTTP] POSTING {0}", url));
+			var encodedContent = new FormUrlEncodedContent(parameters);
+
+			using (var r = await Client.PostAsync(url, encodedContent))
+			{
+				r.EnsureSuccessStatusCode();
+				Debug.WriteLine("[HTTP] POST COMPLETED");
+				return await r.Content.ReadAsStringAsync();
+			}
+		}
     }
 }
