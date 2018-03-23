@@ -97,10 +97,12 @@ namespace TwitchClient
 						if (user.logo != null)
 							imageUser.Source = new BitmapImage(new Uri(user.logo));
 
-						var vault = new PasswordVault();
-						var cred = new PasswordCredential("twitch", user.name, token);
-						vault.Add(cred);
+						//var vault = new PasswordVault();
+						//var cred = new PasswordCredential("twitch", user.name, token);
+						//vault.Add(cred);
 					}
+
+					JSONTwitch.Streams streams = await twitch.GetStreams();
 				}
 
 				loginFrame.Visibility = Visibility.Collapsed;

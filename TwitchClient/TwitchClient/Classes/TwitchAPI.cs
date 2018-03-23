@@ -36,7 +36,7 @@ namespace TwitchClient.Classes
 		/// <summary>
 		/// Get the current user's info
 		/// </summary>
-		/// <returns>JSONTwitch User object</returns>
+		/// <returns>JSONTwitch.User object</returns>
 		public async Task<JSONTwitch.User> GetUser()
 		{
 			if (OAuthToken == null) throw new Exception("Tried to request without OAuth set");
@@ -46,6 +46,25 @@ namespace TwitchClient.Classes
 			JSONTwitch.User user = JsonConvert.DeserializeObject<JSONTwitch.User>(json);
 
 			return user;
+		}
+
+		/// <summary>
+		/// Get the current user's dashboard (25 streams)
+		/// </summary>
+		/// <returns>JSONTwitch.Streams object</returns>
+		public async Task<JSONTwitch.Streams> GetStreams()
+		{
+			string url;
+			if (OAuthToken != null)
+				url = String.Format("https://api.twitch.tv/kraken/streams?oauth_token={0}", OAuthToken);
+			else
+				url = String.Format("https://api.twitch.tv/kraken/streams?client_id={0}", twitchClientId);
+
+			string json = await httpClient.Get(url);
+
+			JSONTwitch.Streams streams = JsonConvert.DeserializeObject<JSONTwitch.Streams>(json);
+
+			return streams;
 		}
     }
 }
