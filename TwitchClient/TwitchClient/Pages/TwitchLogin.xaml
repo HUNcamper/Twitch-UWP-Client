@@ -8,8 +8,23 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <WebView x:Name="webView" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" NavigationFailed="webView_NavigationFailed" NavigationStarting="webView_NavigationStarting"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="651,675,0,0" Text="waiting" TextWrapping="Wrap" VerticalAlignment="Top" Visibility="Collapsed"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image x:Name="image" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom" Source="../Assets/twitch-logo.png" MaxWidth="200" MaxHeight="200" MinWidth="100" MinHeight="100"/>
+            <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Stretch" Grid.Row="1">
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="0,0,0,0" Text="Welcome!" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontWeight="Normal" Height="96"/>
+                <Button x:Name="bLogin" Content="Login" HorizontalAlignment="Center" Margin="0,100,100,0" VerticalAlignment="Top" Click="bLogin_Click" Width="70" FontFamily="Segoe UI" Height="32"/>
+                <Button x:Name="bStream" Content="Stream" HorizontalAlignment="Center" Margin="100,100,0,0" VerticalAlignment="Top" Click="bStream_Click" Width="70" Height="32"/>
+            </Grid>
 
+            <Image x:Name="imageUser" HorizontalAlignment="Center" Height="100" Margin="590,301,590,319" VerticalAlignment="Center" Width="100" Grid.RowSpan="2"/>
+        </Grid>
+        <Frame x:Name="loginFrame" Visibility="Collapsed" Background="#ccc" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <WebView x:Name="loginWebview" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalAlignment="Top" HorizontalAlignment="Center"  NavigationCompleted="loginWebview_NavigationCompleted" Margin="5" NavigationStarting="loginWebview_NavigationStarting"/>
+        </Frame>
     </Grid>
+
 </Page>

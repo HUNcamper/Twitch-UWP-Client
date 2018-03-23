@@ -7,6 +7,7 @@ using TwitchClient.Classes;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using TwitchClient.Classes.JSONTwitchAPI;
+using Windows.Security.Credentials;
 
 namespace TwitchClient.Classes
 {
@@ -65,6 +66,55 @@ namespace TwitchClient.Classes
 			JSONTwitch.Streams streams = JsonConvert.DeserializeObject<JSONTwitch.Streams>(json);
 
 			return streams;
+		}
+
+		/// <summary>
+		/// Check if the user is authenticated, and if yes, return the token.
+		/// </summary>
+		/// <returns>Oauth token</returns>
+		public async static Task<string> GetSavedToken()
+		{
+			PasswordVault pVault = new PasswordVault();
+			PasswordCredential credentials;
+			try
+			{
+				credentials = pVault.FindAllByResource("twitchAPI")[0];
+				
+				credentials.RetrievePassword();
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+
+			Debug.WriteLine(String.Format("Resource: '{0}', User: '{1}', Password: '{2}'", credentials.Resource, credentials.UserName, credentials.Password));
+
+			if (await CheckToken(credentials.Password))
+				return credentials.Password;
+			else
+				return null;
+		}
+
+
+		/// <summary>
+		/// Checks token's validation. If valid, returns true, otherwise false.
+		/// </summary>
+		/// <param name="OAuthToken">The token to validate</param>
+		/// <returns>If valid, returns true, otherwise false</returns>
+		public async static Task<bool> CheckToken(string OAuthToken)
+		{
+			string url = String.Format("https://api.twitch.tv/kraken/user?oauth_token={0}", OAuthToken);
+
+			HTTP httpClient = new HTTP();
+			string json = await httpClient.Get(url);
+			httpClient.Dispose();
+
+			JSONTwitch.User user = JsonConvert.DeserializeObject<JSONTwitch.User>(json);
+
+			if (user.error == null)
+				return true;
+			else
+				return false;
 		}
     }
 }

@@ -415,8 +415,8 @@
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\lib\uap10.0\FFmpegInterop.winmd">
       <PackagePath>FFmpegInterop.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Properties\Default.rd.xml">
-      <PackagePath>Properties\Default.rd.xml</PackagePath>
+    <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\twitch-logo.png">
+      <PackagePath>Assets\twitch-logo.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
@@ -444,6 +444,9 @@
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\Properties\Default.rd.xml">
+      <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.xr.xml">
       <PackagePath>TwitchClient.xr.xml</PackagePath>

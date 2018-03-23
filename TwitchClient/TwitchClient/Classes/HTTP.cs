@@ -37,6 +37,14 @@ namespace TwitchClient.Classes
         }
 
 		/// <summary>
+		/// Disposes the HttpClient. After firing this method, the class becomes unusable.
+		/// </summary>
+		public async void Dispose()
+		{
+			client.Dispose();
+		}
+
+		/// <summary>
 		/// Send GET request to the given URL.
 		/// </summary>
 		/// <param name="url">URL to send the request to</param>
