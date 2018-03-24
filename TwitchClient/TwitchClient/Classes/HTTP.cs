@@ -39,7 +39,7 @@ namespace TwitchClient.Classes
 		/// <summary>
 		/// Disposes the HttpClient. After firing this method, the class becomes unusable.
 		/// </summary>
-		public async void Dispose()
+		public void Dispose()
 		{
 			client.Dispose();
 		}

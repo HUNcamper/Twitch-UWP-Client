@@ -18,10 +18,22 @@ namespace TwitchClient
     public sealed partial class MainPage : Page
 	{
 		private HTTP httpClient;
+		private TwitchAPI twitch;
 
 		public MainPage()
 		{
             this.InitializeComponent();
-        }
+			TwitchAuthenticate();
+		}
+
+		private async void TwitchAuthenticate()
+		{
+			string OAuthToken = await TwitchAPI.GetSavedToken();
+
+			twitch = new TwitchAPI("ejho3mdl9ugrndt9ngwjf1dp3ebgkn", OAuthToken);
+
+			
+			textWelcomeBack.Text = String.Format("Welcome back, {0}!", twitch.username);
+		}
 	}
 }

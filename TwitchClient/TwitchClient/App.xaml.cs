@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TwitchClient.Classes;
+using System.Diagnostics;
 
 namespace TwitchClient
 {
@@ -37,7 +39,7 @@ namespace TwitchClient
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -63,11 +65,25 @@ namespace TwitchClient
             {
                 if (rootFrame.Content == null)
                 {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(Pages.TwitchLogin), e.Arguments);
-                }
+					// When the navigation stack isn't restored navigate to the first page,
+					// configuring the new page by passing required information as a navigation
+					// parameter
+
+					// Check if the user has a saved token on their system,
+					// if so, navigate to the main page, otherwise navigate
+					// to the login page.
+					string token = await TwitchAPI.GetSavedToken();
+					Debug.WriteLine(String.Format("Token: {0}", token));
+
+					Type page;
+
+					if (token == null)
+						page = typeof(Pages.TwitchLogin);
+					else
+						page = typeof(MainPage);
+
+					rootFrame.Navigate(page, e.Arguments);
+				}
                 // Ensure the current window is active
                 Window.Current.Activate();
             }

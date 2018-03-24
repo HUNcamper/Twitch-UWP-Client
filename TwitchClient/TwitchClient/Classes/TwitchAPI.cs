@@ -17,6 +17,7 @@ namespace TwitchClient.Classes
 	class TwitchAPI
 	{
 		public string OAuthToken { get; set; }
+		public string username { get; set; }
 
 		private HTTP httpClient;
 		private string twitchClientId;
@@ -29,9 +30,39 @@ namespace TwitchClient.Classes
 		public TwitchAPI(string clientId, string twitchOAuthToken = null)
 		{
 			twitchClientId = clientId ?? throw new ArgumentException("clientId must not be null!", "clientId");
-			if (twitchOAuthToken != null) OAuthToken = twitchOAuthToken;
-
 			httpClient = new HTTP();
+
+			if (twitchOAuthToken != null)
+			{
+				OAuthToken = twitchOAuthToken;
+				RecordToken();
+			}
+		}
+
+
+		/// <summary>
+		/// Record the user's OAuthToken if it doesn't exist in the Password Vault yet
+		/// </summary>
+		public async void RecordToken()
+		{
+			PasswordVault pVault = new PasswordVault();
+			IReadOnlyList<PasswordCredential> pvList;
+
+			if (username == null)
+			{
+				JSONTwitch.User user = await this.GetUser();
+				username = user.name;
+			}
+
+			try
+			{
+				pvList = pVault.FindAllByResource("twitchAPI");
+			}
+			catch(Exception)
+			{
+				PasswordCredential credentials = new PasswordCredential("twitchAPI", username, OAuthToken);
+				pVault.Add(credentials);
+			}
 		}
 
 		/// <summary>
@@ -87,12 +118,16 @@ namespace TwitchClient.Classes
 				return null;
 			}
 
-			Debug.WriteLine(String.Format("Resource: '{0}', User: '{1}', Password: '{2}'", credentials.Resource, credentials.UserName, credentials.Password));
+			Debug.WriteLine(String.Format("Resource: '{0}', User: '{1}', Token: '{2}'", credentials.Resource, credentials.UserName, credentials.Password));
 
 			if (await CheckToken(credentials.Password))
 				return credentials.Password;
 			else
+			{
+				Debug.WriteLine("Token is INVALID, deleting");
+				pVault.Remove(credentials);
 				return null;
+			}
 		}
 
 
@@ -109,6 +144,8 @@ namespace TwitchClient.Classes
 			string json = await httpClient.Get(url);
 			httpClient.Dispose();
 
+			// If the json returns with an error key,
+			// that means that the token is invalid
 			JSONTwitch.User user = JsonConvert.DeserializeObject<JSONTwitch.User>(json);
 
 			if (user.error == null)
