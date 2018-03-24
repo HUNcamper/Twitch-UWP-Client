@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using TwitchClient.Classes.JSONTwitchAPI;
 using Windows.Security.Credentials;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace TwitchClient.Classes
 {
@@ -56,6 +58,51 @@ namespace TwitchClient.Classes
 				PasswordCredential credentials = new PasswordCredential("twitchAPI", "twitch", OAuthToken);
 				pVault.Add(credentials);
 			}
+		}
+
+		/// <summary>
+		/// Remove the user
+		/// </summary>
+		public void LogOut()
+		{
+			PasswordVault pVault = new PasswordVault();
+			try
+			{
+				// Remove every credential recorded for a fresh login
+				IReadOnlyList<PasswordCredential> credentials;
+				credentials = pVault.FindAllByResource("twitchAPI");
+
+				foreach (var credential in credentials)
+				{
+					pVault.Remove(credential);
+				}
+			}
+			catch(Exception)
+			{
+				Debug.WriteLine("WARNING logging out while there are no records in the Password Vault?");
+			}
+		}
+
+		/// <summary>
+		/// Get the user's avatar
+		/// </summary>
+		/// <returns>ImageSource of the avatar</returns>
+		public async Task<ImageSource> GetUserAvatar()
+		{
+			JSONTwitch.User user = await GetUser();
+
+			return new BitmapImage(new Uri(user.logo));
+		}
+
+		/// <summary>
+		///	Get the user's name
+		/// </summary>
+		/// <returns>username</returns>
+		public async Task<string> GetUserName()
+		{
+			JSONTwitch.User user = await GetUser();
+
+			return user.name;
 		}
 
 		/// <summary>

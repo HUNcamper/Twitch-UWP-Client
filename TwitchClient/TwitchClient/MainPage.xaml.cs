@@ -23,6 +23,8 @@ namespace TwitchClient
 		public MainPage()
 		{
             this.InitializeComponent();
+			textWelcomeBack.Text = "";
+
 			TwitchAuthenticate();
 		}
 
@@ -31,10 +33,16 @@ namespace TwitchClient
 			string OAuthToken = await TwitchAPI.GetSavedToken();
 
 			twitch = new TwitchAPI("ejho3mdl9ugrndt9ngwjf1dp3ebgkn", OAuthToken);
-
-			JSONTwitch.User user = await twitch.GetUser();
 			
-			textWelcomeBack.Text = String.Format("Welcome back, {0}!", user.name);
+			textWelcomeBack.Text = String.Format("Welcome back, {0}!", await twitch.GetUserName());
+
+			imageAvatar.Source = await twitch.GetUserAvatar();
+		}
+
+		private void bLogOut_Click(object sender, RoutedEventArgs e)
+		{
+			twitch.LogOut();
+			Frame.Navigate(typeof(Pages.TwitchLogin));
 		}
 	}
 }

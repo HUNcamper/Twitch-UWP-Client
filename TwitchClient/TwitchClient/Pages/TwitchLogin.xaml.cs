@@ -92,20 +92,10 @@ namespace TwitchClient.Pages
 					Debug.WriteLine(String.Format("User's ID token: {0}", id_token));
 					Debug.WriteLine(String.Format("User's token: {0}", token));
 
-
 					TwitchAPI twitch = new TwitchAPI("ejho3mdl9ugrndt9ngwjf1dp3ebgkn", token);
-					JSONTwitch.User user = await twitch.GetUser();
-					if (user.name != null)
-					{
-						textBlock.Text = String.Format("Welcome back, {0}!", user.name);
-						if (user.logo != null)
-							imageUser.Source = new BitmapImage(new Uri(user.logo));
 
-						//TwitchAPI.GetSavedToken();
-					}
+					Frame.Navigate(typeof(MainPage));
 
-					JSONTwitch.Streams streams = await twitch.GetStreams();
-					Debug.WriteLine("Streams loaded");
 				}
 
 				loginFrame.Visibility = Visibility.Collapsed;
