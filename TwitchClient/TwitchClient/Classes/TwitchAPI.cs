@@ -17,11 +17,11 @@ namespace TwitchClient.Classes
 	class TwitchAPI
 	{
 		public string OAuthToken { get; set; }
-		public string username { get; set; }
 
 		private HTTP httpClient;
 		private string twitchClientId;
-		
+		private JSONTwitch.User User;
+
 		/// <summary>
 		/// Constructor of the TwitchAPI class
 		/// </summary>
@@ -39,20 +39,13 @@ namespace TwitchClient.Classes
 			}
 		}
 
-
 		/// <summary>
 		/// Record the user's OAuthToken if it doesn't exist in the Password Vault yet
 		/// </summary>
-		public async void RecordToken()
+		public void RecordToken()
 		{
 			PasswordVault pVault = new PasswordVault();
 			IReadOnlyList<PasswordCredential> pvList;
-
-			if (username == null)
-			{
-				JSONTwitch.User user = await this.GetUser();
-				username = user.name;
-			}
 
 			try
 			{
@@ -60,7 +53,7 @@ namespace TwitchClient.Classes
 			}
 			catch(Exception)
 			{
-				PasswordCredential credentials = new PasswordCredential("twitchAPI", username, OAuthToken);
+				PasswordCredential credentials = new PasswordCredential("twitchAPI", "twitch", OAuthToken);
 				pVault.Add(credentials);
 			}
 		}
@@ -71,13 +64,16 @@ namespace TwitchClient.Classes
 		/// <returns>JSONTwitch.User object</returns>
 		public async Task<JSONTwitch.User> GetUser()
 		{
-			if (OAuthToken == null) throw new Exception("Tried to request without OAuth set");
-			string url = String.Format("https://api.twitch.tv/kraken/user?oauth_token={0}", OAuthToken);
-			string json = await httpClient.Get(url);
+			if (User == null)
+			{
+				if (OAuthToken == null) throw new Exception("Tried to request without OAuth set");
+				string url = String.Format("https://api.twitch.tv/kraken/user?oauth_token={0}", OAuthToken);
+				string json = await httpClient.Get(url);
 
-			JSONTwitch.User user = JsonConvert.DeserializeObject<JSONTwitch.User>(json);
+				User = JsonConvert.DeserializeObject<JSONTwitch.User>(json);
+			}
 
-			return user;
+			return User;
 		}
 
 		/// <summary>

@@ -32,8 +32,9 @@ namespace TwitchClient
 
 			twitch = new TwitchAPI("ejho3mdl9ugrndt9ngwjf1dp3ebgkn", OAuthToken);
 
+			JSONTwitch.User user = await twitch.GetUser();
 			
-			textWelcomeBack.Text = String.Format("Welcome back, {0}!", twitch.username);
+			textWelcomeBack.Text = String.Format("Welcome back, {0}!", user.name);
 		}
 	}
 }

@@ -31,13 +31,13 @@
     <AppXManifest Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-24T23:06:32.291</Modified>
+      <Modified>2018-03-24T23:29:48.819</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\TwitchClient.exe">
       <PackagePath>entrypoint\TwitchClient.exe</PackagePath>
-      <Modified>2018-03-24T23:06:31.994</Modified>
+      <Modified>2018-03-24T23:29:47.534</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Camper\.nuget\packages\ffmpeginterop.uwp\1.0.4\runtimes\win10-x86\native\FFmpegInterop.dll">
       <PackagePath>FFmpegInterop.dll</PackagePath>
@@ -608,11 +608,11 @@
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-03-24T22:31:17.536</Modified>
+      <Modified>2018-03-24T23:29:48.568</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\bin\x86\Debug\Core\TwitchClient.exe">
       <PackagePath>TwitchClient.exe</PackagePath>
-      <Modified>2018-03-24T23:06:32.288</Modified>
+      <Modified>2018-03-24T23:29:48.816</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
