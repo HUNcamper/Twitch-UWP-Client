@@ -5,20 +5,26 @@
     xmlns:local="using:TwitchClient"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid x:Name="gridSidePanel" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,0,0,0" Width="440">
-            <TextBox x:Name="tbTest" Margin="0,13,128,0" Text="" VerticalAlignment="Top" PlaceholderText="Twitch Channel Name" HorizontalAlignment="Right" Width="301"/>
-            <Button x:Name="bGetStream" Content="Get Stream" HorizontalAlignment="Right" Margin="0,13,11,0" VerticalAlignment="Top" Width="109" Click="bGetStream_Click"/>
-            <ComboBox x:Name="cbQualitySelect" HorizontalAlignment="Stretch" Margin="11,62,11,0" VerticalAlignment="Top" SelectionChanged="cbQualitySelect_SelectionChanged"/>
-            <TextBlock x:Name="tInfo" HorizontalAlignment="Stretch" Margin="27,109,27,0" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" VerticalAlignment="Top" Height="83" TextAlignment="Left"/>
-            <WebView x:Name="webView" HorizontalAlignment="Stretch" Margin="0,194,0,0" VerticalAlignment="Stretch"/>
-        </Grid>
-        <Grid x:Name="gridPlayerArea" HorizontalAlignment="Stretch" Margin="0,0,436,0" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="440"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="gridPlayerArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderTransformOrigin="0.5,0.5" >
             <ProgressRing x:Name="ringVideoLoading" HorizontalAlignment="Center" Margin="0,301,0,301" VerticalAlignment="Center" IsActive="False" Height="118" Width="118"/>
             <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" MediaOpened="mediaPlayer_MediaOpened" Tapped="mediaPlayer_Tapped" Margin="0,0,0,0" HorizontalAlignment="Stretch"/>
         </Grid>
-
+        <StackPanel x:Name="sidePanel" Grid.Column="1" Margin="10">
+            <toolkit:DockPanel Margin="0,5" LastChildFill="True">
+                <Button x:Name="bGetStream" toolkit:DockPanel.Dock="Right" Content="Get Stream" Margin="10,0" Click="bGetStream_Click"/>
+                <TextBox x:Name="tbTest" PlaceholderText="Twitch Channel Name"/>
+            </toolkit:DockPanel>
+            <ComboBox x:Name="cbQualitySelect" SelectionChanged="cbQualitySelect_SelectionChanged" Margin="0,5"/>
+            <TextBlock x:Name="tInfo" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" Margin="0,5"/>
+            <WebView x:Name="webView" Margin="0,5"/>
+        </StackPanel>
     </Grid>
 </Page>
