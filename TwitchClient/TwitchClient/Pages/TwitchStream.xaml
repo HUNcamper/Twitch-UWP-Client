@@ -8,7 +8,7 @@
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{StaticResource AppBackground}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -19,7 +19,7 @@
             <MediaElement x:Name="mediaPlayer" RequestedTheme="Dark" MediaOpened="mediaPlayer_MediaOpened" Tapped="mediaPlayer_Tapped" Margin="0,0,0,0" HorizontalAlignment="Stretch"/>
         </Grid>
         <toolkit:GridSplitter Grid.Column="1" Width="10" FontSize="12" Background="#ccc"/>
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Background="{StaticResource AppBackgroundLighter}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -27,7 +27,7 @@
             <StackPanel x:Name="sidePanel" Margin="10">
                 <toolkit:DockPanel Margin="0,5" LastChildFill="True">
                     <Button x:Name="bGetStream" toolkit:DockPanel.Dock="Right" Content="Get Stream" Margin="10,0" Click="bGetStream_Click"/>
-                    <TextBox x:Name="tbTest" PlaceholderText="Twitch Channel Name" Text=""/>
+                    <TextBox x:Name="tbTest" PlaceholderText="Twitch Channel Name"/>
                 </toolkit:DockPanel>
                 <ComboBox x:Name="cbQualitySelect" SelectionChanged="cbQualitySelect_SelectionChanged" Margin="0,5"/>
                 <TextBlock x:Name="tInfo" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" Margin="0,5"/>
