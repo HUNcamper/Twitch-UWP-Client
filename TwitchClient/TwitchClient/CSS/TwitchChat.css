@@ -1,0 +1,80 @@
+﻿/* Chat background */
+.chat-messages {
+    background-color: #17141f;
+}
+
+/* Chat header background */
+.chat-header {
+    background-color: #17141f;
+    box-shadow: inset 0 -1px 0 0 #2c2541;
+}
+
+/* bottom UI background */
+.chat-interface {
+    background-color: #17141f;
+}
+
+/* text area background */
+select.form__input, textarea.form__input, .form__input[type="text"], .form__input[type="email"], .form__input[type="password"], .form__input[type="search"] {
+    background-color: #0e0c13;
+    box-shadow: inset 0 0 0 1px #392e5c,0 0 0 transparent;
+}
+
+select.form__input:focus, textarea.form__input:focus, .form__input[type="text"]:focus, .form__input[type="email"]:focus, .form__input[type="password"]:focus, .form__input[type="search"]:focus {
+    box-shadow: inset 0 0 0 1px #7d5bbe, 0 0 6px -2px #7d5bbe;
+}
+    
+/* Top Cheer message color */
+.message-line {
+    color: #b19dd8;
+}
+
+/* Sticky message background */
+.sticky-message {
+    background-color: #201c2b;
+}
+
+/* Message's color */
+span.message {
+    color: #ffffff;
+}
+
+/* Special message color */
+.special-message {
+    background-color: #201c2b;
+    border-left: 3px solid #6441a4;
+}
+
+/* Clip */
+.chat-chip {
+    background-color: #201c2b;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.85);
+}
+
+/* Clip card title */
+.card__title {
+    color: #dad8de;
+}
+
+/* System message (Twitch prime subscriptions?) */
+.system-msg, .special-message .system-msg {
+    background-color: #201c2b;
+}
+
+/* Colon inside the message */
+span.colon {
+    color: #D4D4D4;
+}
+
+/* Bottom UI small emoji icons (TODO) */
+.bits-toggle path {
+    fill: rgba(0,0,0,.2);
+
+}
+.bits-toggle.toggled path {
+    fill: rgba(255,255,255,.2);
+}
+
+a {
+    color: #b19dd8;
+}

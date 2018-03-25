@@ -55,17 +55,14 @@ namespace TwitchClient.Pages
 			Debug.WriteLine("token: " + obj.token);
 			Debug.WriteLine("sig: " + obj.sig);
 
-			string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
-
-			Debug.WriteLine("M3U8:");
-			Debug.WriteLine(m3u);
-
 			string infoText;
 
 			bool success;
 
 			try
 			{
+				string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
+
 				m3uParsed = M3UParser.Parse(m3u);
 				infoText = "Success!\nSelect the stream quality below to continue";
 				success = true;
@@ -87,7 +84,7 @@ namespace TwitchClient.Pages
 
 				// Load the twitch chat via embedding it
 				Uri chatUri = new Uri(String.Format("https://www.twitch.tv/{0}/chat", username));
-				webView.Source = chatUri;
+				webViewChat.Source = chatUri;
 
 				loaded = true;
 			}
@@ -153,6 +150,13 @@ namespace TwitchClient.Pages
 		private void mediaPlayer_Tapped(object sender, TappedRoutedEventArgs e)
 		{
 
+		}
+
+		private async void webViewChat_DOMContentLoaded(WebView sender, WebViewDOMContentLoadedEventArgs args)
+		{
+			// Inject CSS into the twitch chat
+			string functionString = "var link = document.createElement('link'); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = 'ms-appx-web:///CSS/TwitchChat.css'; document.getElementsByTagName('head')[0].appendChild(link); ";
+			await webViewChat.InvokeScriptAsync("eval", new string[] { functionString });
 		}
 	}
 }

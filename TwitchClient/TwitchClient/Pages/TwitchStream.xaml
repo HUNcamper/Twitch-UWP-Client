@@ -32,7 +32,7 @@
                 <ComboBox x:Name="cbQualitySelect" SelectionChanged="cbQualitySelect_SelectionChanged" Margin="0,5"/>
                 <TextBlock x:Name="tInfo" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" Margin="0,5"/>
             </StackPanel>
-            <WebView x:Name="webView" Grid.Row="1" Margin="0,5"/>
+            <WebView x:Name="webViewChat" Grid.Row="1" Margin="0,5" DOMContentLoaded="webViewChat_DOMContentLoaded"/>
         </Grid>
     </Grid>
 </Page>
