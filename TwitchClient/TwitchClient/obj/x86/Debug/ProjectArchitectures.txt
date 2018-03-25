@@ -1,1 +1,0 @@
-D:\Projects\GitHub\Twitch-UWP-Client\TwitchClient\TwitchClient\TwitchClient.csproj;x86
