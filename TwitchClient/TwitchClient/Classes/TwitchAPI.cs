@@ -123,11 +123,13 @@ namespace TwitchClient.Classes
 			return User;
 		}
 
-		/// <summary>
-		/// Get the current user's dashboard (25 streams)
-		/// </summary>
-		/// <returns>JSONTwitch.Streams object</returns>
-		public async Task<JSONTwitch.Streams> GetStreams(int startFrom, int limit=25)
+        /// <summary>
+        /// Get the current user's dashboard
+        /// </summary>
+        /// <returns>JSONTwitch.Streams object</returns>
+        /// <param name="startFrom">Start offset, for pagination</param>
+        /// <param name="limit">Amount of streams per request</param>
+        public async Task<JSONTwitch.Streams> GetStreams(int startFrom, int limit=25)
 		{
 			string url;
 			if (OAuthToken != null)

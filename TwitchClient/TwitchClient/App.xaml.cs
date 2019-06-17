@@ -24,6 +24,9 @@ namespace TwitchClient
     /// </summary>
     sealed partial class App : Application
     {
+        // Which page was the user on in the stream dashboard?
+        public static int StreamListPage { get; set; } = 0;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().

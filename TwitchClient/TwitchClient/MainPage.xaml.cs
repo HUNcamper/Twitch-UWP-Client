@@ -21,8 +21,9 @@ namespace TwitchClient
 		private HTTP httpClient;
 		private TwitchAPI twitch;
         private JSONTwitch.Streams streams;
-        private int currentPage = 0;
 
+        // Restore the page number to where the user was before.
+        private int currentPage = App.StreamListPage;
 
         public MainPage()
 		{
@@ -32,6 +33,8 @@ namespace TwitchClient
             TwitchAuthenticate();
 
             this.ViewModel = new StreamViewModel();
+            
+            UpdatePageNum();
         }
 
         public StreamViewModel ViewModel { get; set; }
@@ -46,7 +49,7 @@ namespace TwitchClient
 
 			imageAvatar.Source = await twitch.GetUserAvatar();
 
-            RetrieveStreams(0);
+            RetrieveStreams(currentPage * 25);
         }
 
         private void FillGridView()
@@ -55,6 +58,10 @@ namespace TwitchClient
             ViewModel.FillStreams(streams);
         }
 
+        /// <summary>
+		/// Changes page
+		/// </summary>
+        /// <param name="startFrom">Start offset, for pagination</param>
         private async void RetrieveStreams(int startFrom)
         {
             streams = await twitch.GetStreams(startFrom);
@@ -65,15 +72,13 @@ namespace TwitchClient
 		private void bLogOut_Click(object sender, RoutedEventArgs e)
 		{
 			twitch.LogOut();
-			Frame.Navigate(typeof(Pages.TwitchLogin));
+            HandleFrameChange(typeof(Pages.TwitchLogin));
 		}
 
         private async void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            //await new MessageDialog((sender as Grid).Name, "Stream").ShowAsync();
-
             // Send streamer's name to stream watch page
-            Frame.Navigate(typeof(TwitchStream), (sender as Grid).Name);
+            HandleFrameChange(typeof(TwitchStream), (sender as Grid).Name);
         }
 
         private void buttonBack_Click(object sender, RoutedEventArgs e)
@@ -82,10 +87,6 @@ namespace TwitchClient
             {
                 currentPage--;
                 RetrieveStreams(25 * currentPage);
-            }
-            if (currentPage == 0)
-            {
-                buttonBack.IsEnabled = false;
             }
             ChangePage();
             UpdatePageNum();
@@ -99,15 +100,41 @@ namespace TwitchClient
             UpdatePageNum();
         }
 
+        /// <summary>
+		/// Changes page
+		/// </summary>
         private void ChangePage()
         {
             ringLoading.IsActive = true;
             RetrieveStreams(25 * currentPage);
         }
 
+        /// <summary>
+		/// Updates the page number textblock, and update buttons
+		/// </summary>
         private void UpdatePageNum()
         {
             textPageNum.Text = (currentPage + 1).ToString();
+            
+            if (currentPage == 0)
+            {
+                buttonBack.IsEnabled = false;
+            }
+            else
+            {
+                buttonBack.IsEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Updates the page number textblock
+        /// </summary>
+        /// <param name="page">typeof page to navigate to</param>
+        /// <param name="parameters">parameters to send</param>
+        private void HandleFrameChange(Type page, object parameters=null)
+        {
+            App.StreamListPage = currentPage;
+            Frame.Navigate(page, parameters);
         }
     }
 }
