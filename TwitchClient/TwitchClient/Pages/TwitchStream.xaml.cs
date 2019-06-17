@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using TwitchClient.Classes;
+using Windows.UI.Popups;
 
 namespace TwitchClient.Pages
 {
@@ -64,12 +65,15 @@ namespace TwitchClient.Pages
 				string m3u = await http.Get(String.Format(USHER_API, username, obj.token, obj.sig, 9999));
 
 				m3uParsed = M3UParser.Parse(m3u);
-				infoText = "Success!\nSelect the stream quality below to continue";
+				infoText = "Success!\nSelect the stream quality above to play the stream.";
 				success = true;
 			}
 			catch (Exception exception)
 			{
-				infoText = exception.ToString();
+                await new MessageDialog("An error occurred. It's likely that the stream doesn't exist.", "Error").ShowAsync();
+                //infoText = exception.ToString();
+                Debug.WriteLine(exception.ToString());
+                infoText = tInfo.Text;
 				success = false;
 			}
 
@@ -83,7 +87,7 @@ namespace TwitchClient.Pages
 				}
 
 				// Load the twitch chat via embedding it
-				Uri chatUri = new Uri(String.Format("https://www.twitch.tv/{0}/chat", username));
+				Uri chatUri = new Uri(String.Format("https://www.twitch.tv/{0}/chat?darkpopout", username));
 				webViewChat.Source = chatUri;
 
 				loaded = true;
@@ -130,12 +134,12 @@ namespace TwitchClient.Pages
 				mediaPlayer.TransportControls.IsStopEnabled = false;
 
 				mediaPlayer.TransportControls.IsSeekEnabled = false;
+                mediaPlayer.TransportControls.IsSeekBarVisible = false;
 
-				mediaPlayer.TransportControls.IsZoomButtonVisible = true;
+                mediaPlayer.TransportControls.IsZoomButtonVisible = true;
 				mediaPlayer.TransportControls.IsZoomEnabled = true;
 
 				mediaPlayer.TransportControls.IsRightTapEnabled = true;
-
 
 				#endregion
 			}

@@ -30,7 +30,7 @@ namespace TwitchClient.Pages
 
 		private void bLogin_Click(object sender, RoutedEventArgs e)
 		{
-			loginFrame.Visibility = Visibility.Visible;
+			loginScrollViewer.Visibility = Visibility.Visible;
 			loginWebview.Source = new Uri("https://id.twitch.tv/oauth2/authorize?client_id=ejho3mdl9ugrndt9ngwjf1dp3ebgkn&redirect_uri=http://localhost&response_type=token+id_token&scope=openid+user_read+user_subscriptions+chat_login+channel_feed_read+channel_feed_edit+channel_editor+channel_check_subscription&force_verify=true");
 		}
 
@@ -56,7 +56,10 @@ namespace TwitchClient.Pages
 			// resize the webview to the content
 			loginWebview.Width = width;
 			loginWebview.Height = height;
-		}
+
+            //int windowHeight = Convert.ToInt32(((Frame)Window.Current.Content).ActualHeight);
+            //loginScrollViewer.Height = windowHeight;
+        }
 
 		private void bStream_Click(object sender, RoutedEventArgs e)
 		{
@@ -75,7 +78,7 @@ namespace TwitchClient.Pages
 			if (url.StartsWith("http://localhost/?error"))
 			{
 				Debug.WriteLine("The user canceled the authorization proccess.");
-				loginFrame.Visibility = Visibility.Collapsed;
+                loginScrollViewer.Visibility = Visibility.Collapsed;
 			}
 			else if (url.StartsWith("http://localhost/"))
 			{
@@ -98,7 +101,7 @@ namespace TwitchClient.Pages
 
 				}
 
-				loginFrame.Visibility = Visibility.Collapsed;
+                loginScrollViewer.Visibility = Visibility.Collapsed;
 			}
 		}
 	}
