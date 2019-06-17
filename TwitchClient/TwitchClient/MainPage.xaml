@@ -5,12 +5,35 @@
     xmlns:local="using:TwitchClient"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="using:TwitchClient.Classes"
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource AppBackground}">
-        <TextBlock x:Name="textWelcomeBack" HorizontalAlignment="Center" Margin="0,0,0,0" Text="Welcome back" TextWrapping="Wrap" VerticalAlignment="Center"/>
-        <Button x:Name="bLogOut" Content="Log out" HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Center" Click="bLogOut_Click"/>
-        <Image x:Name="imageAvatar" HorizontalAlignment="Center" Height="100" Margin="0,0,0,200" VerticalAlignment="Center" Width="100"/>
+        <TextBlock x:Name="textWelcomeBack" HorizontalAlignment="Left" Margin="130,41,0,0" Text="Welcome back" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="bLogOut" Content="Log out" HorizontalAlignment="Left" Margin="130,78,0,0" VerticalAlignment="Top" Click="bLogOut_Click"/>
+        <Image x:Name="imageAvatar" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
+
+        <GridView x:Name="streamGridView" Margin="10,135,10,10" ItemsSource="{x:Bind ViewModel.Streams}" VerticalAlignment="Stretch">
+            <GridView.ItemTemplate>
+                <DataTemplate x:Name="ImageOverlayDataTemplate" x:DataType="local1:Stream">
+                    <Grid Height="180" Width="320" AutomationProperties.Name="{x:Bind streamerName}">
+                        <Image Source="{x:Bind preview}" Stretch="UniformToFill"/>
+                        <StackPanel Orientation="Vertical" Height="60" VerticalAlignment="Bottom" Padding="12">
+                            <StackPanel.Background>
+                                <AcrylicBrush TintColor="#E5B41EEC"/>
+                            </StackPanel.Background>
+                            <TextBlock Text="{x:Bind streamerName}"/>
+                            <TextBlock Text="{x:Bind gameName}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
 
     </Grid>
 </Page>

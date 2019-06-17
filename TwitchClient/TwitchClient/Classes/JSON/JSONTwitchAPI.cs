@@ -9,7 +9,7 @@ namespace TwitchClient.Classes.JSONTwitchAPI
 	/// <summary>
 	/// Class containing classes for deserializing requests from the Twitch API
 	/// </summary>
-	class JSONTwitch
+	public class JSONTwitch
 	{
 		#region ERROR
 		public class ErrorMessage

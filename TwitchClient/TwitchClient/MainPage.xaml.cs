@@ -19,16 +19,22 @@ namespace TwitchClient
 	{
 		private HTTP httpClient;
 		private TwitchAPI twitch;
+        private JSONTwitch.Streams streams;
 
-		public MainPage()
+
+        public MainPage()
 		{
             this.InitializeComponent();
 			textWelcomeBack.Text = "";
 
-			TwitchAuthenticate();
-		}
+            TwitchAuthenticate();
 
-		private async void TwitchAuthenticate()
+            this.ViewModel = new StreamViewModel();
+        }
+
+        public StreamViewModel ViewModel { get; set; }
+
+        private async void TwitchAuthenticate()
 		{
 			string OAuthToken = await TwitchAPI.GetSavedToken();
 
@@ -37,12 +43,25 @@ namespace TwitchClient
 			textWelcomeBack.Text = String.Format("Welcome back, {0}!", await twitch.GetUserName());
 
 			imageAvatar.Source = await twitch.GetUserAvatar();
-		}
+
+            RetrieveStreams();
+        }
+
+        private void FillGridView()
+        {
+            ViewModel.FillStreams(streams);
+        }
+
+        private async void RetrieveStreams()
+        {
+            streams = await twitch.GetStreams();
+            FillGridView();
+        }
 
 		private void bLogOut_Click(object sender, RoutedEventArgs e)
 		{
 			twitch.LogOut();
 			Frame.Navigate(typeof(Pages.TwitchLogin));
 		}
-	}
+    }
 }
