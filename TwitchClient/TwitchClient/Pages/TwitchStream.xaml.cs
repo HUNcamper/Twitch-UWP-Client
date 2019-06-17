@@ -185,18 +185,20 @@ namespace TwitchClient.Pages
 			await webViewChat.InvokeScriptAsync("eval", new string[] { functionString });
 		}
 
-        private async void bBack_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             string token = await TwitchAPI.GetSavedToken();
 
-            Type page;
+            /*Type page;
 
             if (token == null)
                 page = typeof(Pages.TwitchLogin);
             else
                 page = typeof(MainPage);
 
-            Frame.Navigate(page);
+            Frame.Navigate(page);*/
+
+            Frame.GoBack();
         }
     }
 }

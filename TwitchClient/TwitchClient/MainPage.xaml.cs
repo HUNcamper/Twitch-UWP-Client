@@ -21,6 +21,7 @@ namespace TwitchClient
 		private HTTP httpClient;
 		private TwitchAPI twitch;
         private JSONTwitch.Streams streams;
+        private int currentPage = 0;
 
 
         public MainPage()
@@ -45,18 +46,20 @@ namespace TwitchClient
 
 			imageAvatar.Source = await twitch.GetUserAvatar();
 
-            RetrieveStreams();
+            RetrieveStreams(0);
         }
 
         private void FillGridView()
         {
+            ViewModel.Streams.Clear();
             ViewModel.FillStreams(streams);
         }
 
-        private async void RetrieveStreams()
+        private async void RetrieveStreams(int startFrom)
         {
-            streams = await twitch.GetStreams();
+            streams = await twitch.GetStreams(startFrom);
             FillGridView();
+            ringLoading.IsActive = false;
         }
 
 		private void bLogOut_Click(object sender, RoutedEventArgs e)
@@ -68,7 +71,43 @@ namespace TwitchClient
         private async void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
             //await new MessageDialog((sender as Grid).Name, "Stream").ShowAsync();
+
+            // Send streamer's name to stream watch page
             Frame.Navigate(typeof(TwitchStream), (sender as Grid).Name);
+        }
+
+        private void buttonBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPage > 0)
+            {
+                currentPage--;
+                RetrieveStreams(25 * currentPage);
+            }
+            if (currentPage == 0)
+            {
+                buttonBack.IsEnabled = false;
+            }
+            ChangePage();
+            UpdatePageNum();
+        }
+
+        private void buttonForward_Click(object sender, RoutedEventArgs e)
+        {
+            buttonBack.IsEnabled = true;
+            currentPage++;
+            ChangePage();
+            UpdatePageNum();
+        }
+
+        private void ChangePage()
+        {
+            ringLoading.IsActive = true;
+            RetrieveStreams(25 * currentPage);
+        }
+
+        private void UpdatePageNum()
+        {
+            textPageNum.Text = (currentPage + 1).ToString();
         }
     }
 }

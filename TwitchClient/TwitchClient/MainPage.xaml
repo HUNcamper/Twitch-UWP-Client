@@ -13,7 +13,7 @@
         <Button x:Name="bLogOut" Content="Log out" HorizontalAlignment="Left" Margin="130,78,0,0" VerticalAlignment="Top" Click="bLogOut_Click"/>
         <Image x:Name="imageAvatar" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100"/>
 
-        <GridView x:Name="streamGridView" Margin="10,135,10,10" ItemsSource="{x:Bind ViewModel.Streams}" VerticalAlignment="Stretch">
+        <GridView x:Name="streamGridView" Margin="10,135,10,55" ItemsSource="{x:Bind ViewModel.Streams}" VerticalAlignment="Stretch">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="ImageOverlayDataTemplate" x:DataType="local1:Stream">
                     <Grid Height="180" Width="320" Name="{x:Bind streamerName}" Tapped="Grid_Tapped">
@@ -34,6 +34,22 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
+
+
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonBack" Style="{StaticResource NavigationBackButtonNormalStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="False" Click="buttonBack_Click"/>
+            <Button x:Name="buttonForward" Style="{StaticResource NavigationBackButtonNormalStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="152,0,0,0" Click="buttonForward_Click">
+                <Button.RenderTransform>
+                    <CompositeTransform Rotation="180"/>
+                </Button.RenderTransform>
+            </Button>
+            <TextBlock x:Name="textPageNum" HorizontalAlignment="Center" Text="1" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        </Grid>
+        <ProgressRing x:Name="ringLoading" HorizontalAlignment="Center" VerticalAlignment="Center" IsActive="False" Height="60" Width="60"/>
 
     </Grid>
 </Page>

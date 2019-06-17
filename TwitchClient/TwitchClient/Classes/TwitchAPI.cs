@@ -127,13 +127,13 @@ namespace TwitchClient.Classes
 		/// Get the current user's dashboard (25 streams)
 		/// </summary>
 		/// <returns>JSONTwitch.Streams object</returns>
-		public async Task<JSONTwitch.Streams> GetStreams()
+		public async Task<JSONTwitch.Streams> GetStreams(int startFrom, int limit=25)
 		{
 			string url;
 			if (OAuthToken != null)
-				url = String.Format("https://api.twitch.tv/kraken/streams?oauth_token={0}", OAuthToken);
+				url = String.Format("https://api.twitch.tv/kraken/streams?oauth_token={0}&limit={1}&offset={2}", OAuthToken, limit, startFrom);
 			else
-				url = String.Format("https://api.twitch.tv/kraken/streams?client_id={0}", twitchClientId);
+				url = String.Format("https://api.twitch.tv/kraken/streams?client_id={0}&limit={1}&offset={2}", twitchClientId, limit, startFrom);
 
 			string json = await httpClient.Get(url);
 
