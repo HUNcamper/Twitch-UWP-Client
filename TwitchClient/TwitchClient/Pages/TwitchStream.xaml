@@ -26,8 +26,9 @@
             </Grid.RowDefinitions>
             <StackPanel x:Name="sidePanel" Margin="10">
                 <toolkit:DockPanel Margin="0,5" LastChildFill="True">
-                    <Button x:Name="bGetStream" toolkit:DockPanel.Dock="Right" Content="Get Stream" Margin="10,0" Click="bGetStream_Click"/>
-                    <TextBox x:Name="tbTest" PlaceholderText="Twitch Channel Name"/>
+                    <Button x:Name="bBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="63" Click="bBack_Click"/>
+                    <Button x:Name="bGetStream" toolkit:DockPanel.Dock="Right" Content="Get Stream" Margin="19,0,0,0" Click="bGetStream_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Width="90"/>
+                    <TextBox x:Name="tbTest" PlaceholderText="Twitch Channel Name" Margin="5,0,-14,0"/>
                 </toolkit:DockPanel>
                 <ComboBox x:Name="cbQualitySelect" SelectionChanged="cbQualitySelect_SelectionChanged" Margin="0,5"/>
                 <TextBlock x:Name="tInfo" Text="Enter a Twitch Channel to continue." TextWrapping="Wrap" Margin="0,5"/>

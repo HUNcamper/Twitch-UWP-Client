@@ -16,11 +16,11 @@
         <GridView x:Name="streamGridView" Margin="10,135,10,10" ItemsSource="{x:Bind ViewModel.Streams}" VerticalAlignment="Stretch">
             <GridView.ItemTemplate>
                 <DataTemplate x:Name="ImageOverlayDataTemplate" x:DataType="local1:Stream">
-                    <Grid Height="180" Width="320" AutomationProperties.Name="{x:Bind streamerName}">
+                    <Grid Height="180" Width="320" Name="{x:Bind streamerName}" Tapped="Grid_Tapped">
                         <Image Source="{x:Bind preview}" Stretch="UniformToFill"/>
                         <StackPanel Orientation="Vertical" Height="60" VerticalAlignment="Bottom" Padding="12">
                             <StackPanel.Background>
-                                <AcrylicBrush TintColor="#E5B41EEC"/>
+                                <AcrylicBrush TintColor="#E573099B"/>
                             </StackPanel.Background>
                             <TextBlock Text="{x:Bind streamerName}"/>
                             <TextBlock Text="{x:Bind gameName}" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
@@ -30,7 +30,7 @@
             </GridView.ItemTemplate>
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal"/>
+                    <ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>

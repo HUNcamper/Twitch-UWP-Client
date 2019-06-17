@@ -12,6 +12,7 @@ using TwitchClient.Classes.JSONTwitchAPI;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Media;
 using Windows.Security.Credentials;
+using Windows.UI.Popups;
 
 namespace TwitchClient
 {
@@ -63,5 +64,11 @@ namespace TwitchClient
 			twitch.LogOut();
 			Frame.Navigate(typeof(Pages.TwitchLogin));
 		}
+
+        private async void Grid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            //await new MessageDialog((sender as Grid).Name, "Stream").ShowAsync();
+            Frame.Navigate(typeof(TwitchStream), (sender as Grid).Name);
+        }
     }
 }

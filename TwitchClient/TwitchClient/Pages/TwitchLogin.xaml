@@ -17,7 +17,7 @@
             <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" Grid.RowSpan="2" VerticalAlignment="Stretch" Grid.Row="1">
                 <TextBlock x:Name="textBlock" HorizontalAlignment="Center" Margin="0,0,0,0" Text="Welcome!" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontWeight="Normal" Height="96"/>
                 <Button x:Name="bLogin" Content="Login" HorizontalAlignment="Center" Margin="0,110,100,0" VerticalAlignment="Top" Click="bLogin_Click" Width="70" FontFamily="Segoe UI" Height="32"/>
-                <Button x:Name="bStream" Content="Stream" HorizontalAlignment="Center" Margin="100,110,0,0" VerticalAlignment="Top" Click="bStream_Click" Width="70" Height="32"/>
+                <Button x:Name="bStream" Content="Watch" HorizontalAlignment="Center" Margin="100,110,0,0" VerticalAlignment="Top" Click="bStream_Click" Width="70" Height="32"/>
             </Grid>
 
             <Image x:Name="imageUser" HorizontalAlignment="Center" Height="100" Margin="590,301,590,319" VerticalAlignment="Center" Width="100" Grid.RowSpan="2"/>

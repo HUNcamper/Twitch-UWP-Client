@@ -95,12 +95,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\TwitchStream.cs" />
+    <Compile Include="Classes\Stream.cs" />
     <Compile Include="Classes\HTTP.cs" />
     <Compile Include="Classes\JSON\JSONTwitchAPI.cs" />
     <Compile Include="Classes\M3UParser.cs" />
     <Compile Include="Classes\TwitchAPI.cs" />
-    <Compile Include="Classes\TwitchStreamViewModel.cs" />
+    <Compile Include="Classes\StreamViewModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

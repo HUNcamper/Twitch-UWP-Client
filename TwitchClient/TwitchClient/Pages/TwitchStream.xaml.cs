@@ -7,6 +7,7 @@ using System.Text;
 using System.Collections.Generic;
 using TwitchClient.Classes;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Navigation;
 
 namespace TwitchClient.Pages
 {
@@ -17,8 +18,21 @@ namespace TwitchClient.Pages
 			Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 			this.InitializeComponent();
 		}
+        
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
 
-		private List<M3U> m3uParsed = new List<M3U>();
+            string parameter = (string)e.Parameter;
+            
+            if (parameter != null)
+            {
+                tbTest.Text = parameter;
+                bGetStream_Click(null, new Windows.UI.Xaml.RoutedEventArgs());
+            }
+        }
+
+        private List<M3U> m3uParsed = new List<M3U>();
 
 		// channel, token, sig, random
 		private string USHER_API = "http://usher.twitch.tv/api/channel/hls/{0}.m3u8?player=twitchweb&token={1}&sig={2}&$allow_audio_only=true&allow_source=true&type=any&p={3}";
@@ -67,7 +81,9 @@ namespace TwitchClient.Pages
 				m3uParsed = M3UParser.Parse(m3u);
 				infoText = "Success!\nSelect the stream quality above to play the stream.";
 				success = true;
-			}
+
+                cbQualitySelect.SelectedIndex = 0;
+            }
 			catch (Exception exception)
 			{
                 await new MessageDialog("An error occurred. It's likely that the stream doesn't exist.", "Error").ShowAsync();
@@ -91,59 +107,65 @@ namespace TwitchClient.Pages
 				webViewChat.Source = chatUri;
 
 				loaded = true;
-			}
+                loadStream();
+            }
 
 			Debug.WriteLine("Done");
 		}
 
-		private void cbQualitySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (loaded)
-			{
-				ringVideoLoading.IsActive = true;
+        private void loadStream()
+        {
+            if (loaded)
+            {
+                ringVideoLoading.IsActive = true;
 
-				// Set media player source to stream URL
-				int selected = cbQualitySelect.SelectedIndex;
-				Uri streamUri = new Uri(m3uParsed[selected].url);
-				mediaPlayer.Source = streamUri;
-				mediaPlayer.Play();
+                // Set media player source to stream URL
+                int selected = cbQualitySelect.SelectedIndex;
+                Uri streamUri = new Uri(m3uParsed[selected].url);
+                mediaPlayer.Source = streamUri;
+                mediaPlayer.Play();
 
-				#region Set transport controls
+                #region Set transport controls
 
-				mediaPlayer.AreTransportControlsEnabled = true;
+                mediaPlayer.AreTransportControlsEnabled = true;
 
-				mediaPlayer.TransportControls.IsFastForwardButtonVisible = false;
-				mediaPlayer.TransportControls.IsFastForwardEnabled = false;
+                mediaPlayer.TransportControls.IsFastForwardButtonVisible = false;
+                mediaPlayer.TransportControls.IsFastForwardEnabled = false;
 
-				mediaPlayer.TransportControls.IsFastRewindButtonVisible = false;
-				mediaPlayer.TransportControls.IsFastRewindEnabled = false;
+                mediaPlayer.TransportControls.IsFastRewindButtonVisible = false;
+                mediaPlayer.TransportControls.IsFastRewindEnabled = false;
 
-				mediaPlayer.TransportControls.IsNextTrackButtonVisible = false;
-				mediaPlayer.TransportControls.IsPreviousTrackButtonVisible = false;
+                mediaPlayer.TransportControls.IsNextTrackButtonVisible = false;
+                mediaPlayer.TransportControls.IsPreviousTrackButtonVisible = false;
 
-				mediaPlayer.TransportControls.IsPlaybackRateButtonVisible = false;
-				mediaPlayer.TransportControls.IsPlaybackRateEnabled = false;
+                mediaPlayer.TransportControls.IsPlaybackRateButtonVisible = false;
+                mediaPlayer.TransportControls.IsPlaybackRateEnabled = false;
 
-				mediaPlayer.TransportControls.IsSkipBackwardButtonVisible = false;
-				mediaPlayer.TransportControls.IsSkipBackwardEnabled = false;
+                mediaPlayer.TransportControls.IsSkipBackwardButtonVisible = false;
+                mediaPlayer.TransportControls.IsSkipBackwardEnabled = false;
 
-				mediaPlayer.TransportControls.IsSkipForwardButtonVisible = false;
-				mediaPlayer.TransportControls.IsSkipForwardEnabled = false;
+                mediaPlayer.TransportControls.IsSkipForwardButtonVisible = false;
+                mediaPlayer.TransportControls.IsSkipForwardEnabled = false;
 
-				mediaPlayer.TransportControls.IsStopButtonVisible = false;
-				mediaPlayer.TransportControls.IsStopEnabled = false;
+                mediaPlayer.TransportControls.IsStopButtonVisible = false;
+                mediaPlayer.TransportControls.IsStopEnabled = false;
 
-				mediaPlayer.TransportControls.IsSeekEnabled = false;
+                mediaPlayer.TransportControls.IsSeekEnabled = false;
                 mediaPlayer.TransportControls.IsSeekBarVisible = false;
 
                 mediaPlayer.TransportControls.IsZoomButtonVisible = true;
-				mediaPlayer.TransportControls.IsZoomEnabled = true;
+                mediaPlayer.TransportControls.IsZoomEnabled = true;
 
-				mediaPlayer.TransportControls.IsRightTapEnabled = true;
+                mediaPlayer.TransportControls.IsRightTapEnabled = true;
 
-				#endregion
-			}
-		}
+                #endregion
+            }
+        }
+
+		private void cbQualitySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+            loadStream();
+        }
 
 
 		private void mediaPlayer_MediaOpened(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -162,5 +184,19 @@ namespace TwitchClient.Pages
 			string functionString = "var link = document.createElement('link'); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = 'ms-appx-web:///CSS/TwitchChat.css'; document.getElementsByTagName('head')[0].appendChild(link); ";
 			await webViewChat.InvokeScriptAsync("eval", new string[] { functionString });
 		}
-	}
+
+        private async void bBack_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            string token = await TwitchAPI.GetSavedToken();
+
+            Type page;
+
+            if (token == null)
+                page = typeof(Pages.TwitchLogin);
+            else
+                page = typeof(MainPage);
+
+            Frame.Navigate(page);
+        }
+    }
 }

@@ -26,28 +26,5 @@ namespace TwitchClient.Classes
                 });
             }
         }
-
-
-        /*public StreamViewModel()
-        {
-            this.streams.Add(new Stream()
-            {
-                streamerName = "Ninja",
-                gameName = "Fortnite",
-                views = 1000
-            });
-            this.streams.Add(new Stream()
-            {
-                streamerName = "Ludwig van Beethoven",
-                gameName = "Third Symphony",
-                views = 654
-            });
-            this.streams.Add(new Stream()
-            {
-                streamerName = "George Frideric Handel",
-                gameName = "Serse",
-                views = 50
-            });
-        }*/
     }
 }
